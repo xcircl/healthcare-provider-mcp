@@ -1,0 +1,39 @@
+{
+  "name": "@xcircl/mcp-server",
+  "version": "0.1.0",
+  "description": "MCP server for xcircl — lets Claude/ChatGPT query verified U.S. regulated-care provider data as tools. Free tier works without a key.",
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "xcircl-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc && chmod +x dist/index.js",
+    "start": "node dist/index.js",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "xcircl",
+    "healthcare",
+    "glp1",
+    "provider-data"
+  ],
+  "engines": {
+    "node": ">=18.17"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "@xcircl/sdk": "0.1.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.9.3"
+  }
+}

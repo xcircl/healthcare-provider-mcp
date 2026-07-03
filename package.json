@@ -1,0 +1,23 @@
+{
+  "name": "xcircl-agent",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Open-source agent, MCP server and SDK for the xcircl regulated-care provider data API",
+  "license": "MIT",
+  "workspaces": [
+    "packages/sdk-ts",
+    "packages/mcp-server"
+  ],
+  "scripts": {
+    "build": "npm run build -w @xcircl/sdk && npm run build -w @xcircl/mcp-server",
+    "clean": "rm -rf packages/*/dist",
+    "example:clinics": "node examples/01-find-clinics.mjs",
+    "example:ai": "node examples/02-ai-tool-use.mjs"
+  },
+  "engines": {
+    "node": ">=18.17"
+  },
+  "devDependencies": {
+    "@anthropic-ai/sdk": "^0.110.0"
+  }
+}

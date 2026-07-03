@@ -1,0 +1,17 @@
+node_modules/
+dist/
+
+# internal planning docs & local tool config — never publish
+7_开源Agent开发说明_给ClaudeCode.md
+.claude/
+*.tsbuildinfo
+.env
+.env.*
+.DS_Store
+
+# open-core red line: no data files in this repo, ever
+*.csv
+*.parquet
+*.sqlite
+*.db
+data/

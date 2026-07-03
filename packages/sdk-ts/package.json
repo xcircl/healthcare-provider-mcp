@@ -1,0 +1,36 @@
+{
+  "name": "@xcircl/sdk",
+  "version": "0.1.0",
+  "description": "TypeScript SDK for the xcircl API — verified U.S. regulated-care provider data. Free tier works without a key.",
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "xcircl",
+    "healthcare",
+    "glp1",
+    "provider-data",
+    "compliance",
+    "nppes"
+  ],
+  "engines": {
+    "node": ">=18.17"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}

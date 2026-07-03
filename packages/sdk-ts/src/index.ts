@@ -1,0 +1,24 @@
+export { XcirclClient, XcirclApiError, DEFAULT_BASE_URL, UPGRADE_HINT } from './client.js';
+export type { XcirclClientOptions } from './client.js';
+export type {
+  ApiTier,
+  BusinessMode,
+  ComplianceResult,
+  ComplianceSignals,
+  Coverage,
+  CoverageSlice,
+  LicenseSignal,
+  Pagination,
+  Provider,
+  ProviderIdentity,
+  ProviderPrice,
+  ProviderResponse,
+  PublishBoundary,
+  SampleResponse,
+  SearchParams,
+  SearchResponse,
+  SignalCounts,
+  SignalStatus,
+  SourcedSignal,
+  Vertical,
+} from './types.js';
