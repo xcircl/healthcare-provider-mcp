@@ -86,13 +86,19 @@ view of the wider monitored set).
 ```jsonc
 {
   "tier": "free",                    // or "paid" — decided by your key
+  "plan": "free",                    // free | builder | developer | enterprise
   "publish_boundary": "verified",    // or "tracked" (include=tracked, free tier only)
+  "usage": { "used": 7, "quota": 5000 },           // metered plans (builder/developer) only
   "notice": "Free tier: identity fields only. …",  // free tier only
   "pagination": { "total": 15, "limit": 20, "offset": 0, "returned": 15 },
   "filters": { "vertical": "glp1", "state": "TX", "city": null, "business_mode": null },
   "data": [ /* Provider[] */ ]
 }
 ```
+
+On a Builder key with no `vertical` param, the API serves the key's bound
+vertical. The single-provider envelope carries `tier`/`plan` but no `usage`
+meter (its 429 body does include one).
 
 ### `GET /api/v1/providers/{entity_id|slug}/`
 
@@ -129,7 +135,7 @@ Authorization: Bearer <your-key>
 |---|---|---|---|---|
 | No key | FREE fields | — | all | Fully usable; responses carry a `notice` about paid fields |
 | Free key ($0, register) | FREE fields | 1,000/mo | all | |
-| Builder key ($99/mo, self-serve) | ALL fields | 5,000/mo | 1 — key is bound to one vertical; cross-vertical requests return an upgrade notice | |
+| Builder key ($99/mo, self-serve) | ALL fields | 5,000/mo | 1 — key is bound to one vertical; cross-vertical requests return 403 (see below) | |
 | Developer key ($750/mo; Founding Customer, first 10: $375/mo locked 12 months) | ALL fields | 25,000/mo | multiple | |
 | Enterprise key | ALL fields + export | unlimited | all | Per contract — [contact sales](https://xcircl.com/developers/) |
 
@@ -137,3 +143,34 @@ Rate limits and vertical binding are enforced server-side by the key, same
 principle as field tiering — clients do no gating. An unrecognised key falls
 back to the free tier with a notice (it never hard-fails), so demos keep
 working.
+
+## Error responses (verbatim)
+
+The SDK and MCP server relay these server messages **verbatim** — the
+`error` and `upgrade` texts below are exactly what callers see.
+
+**403 — Builder key used outside its bound vertical** (e.g. a glp1-bound key
+querying `vertical=medspa`):
+
+```json
+{
+  "error": "Your Builder plan is bound to the \"glp1\" vertical.",
+  "upgrade": "Developer ($750/mo) unlocks multi-vertical access — see /developers/pricing/ or talk to sales."
+}
+```
+
+**429 — monthly quota reached** (Builder example; Developer's `upgrade` line
+points to Enterprise instead):
+
+```json
+{
+  "error": "Monthly call quota reached (5000 calls).",
+  "plan": "builder",
+  "usage": { "used": 5000, "quota": 5000 },
+  "upgrade": "Developer ($750/mo) raises the quota to 25,000 calls — see /developers/pricing/."
+}
+```
+
+In the SDK both surface as an `XcirclApiError` with `.status`, `.message`
+(the `error` text), `.upgrade` and `.body` (the raw JSON). The MCP server
+returns `isError: true` with `Error (403|429): <error> <upgrade>`.

@@ -40,12 +40,14 @@ function toolResult(payload: unknown) {
 function toolError(err: unknown) {
   let text: string;
   if (err instanceof XcirclApiError) {
-    text =
-      err.status === 404
-        ? 'Error: provider not found. Pass an entity_id (e.g. "ent_…") or slug exactly as returned by search_providers.'
-        : err.status === 429
-          ? 'Error: rate limit exceeded. Free tier allows limited requests — get a key at https://xcircl.com/developers/ or retry later.'
-          : `Error: xcircl API request failed (${err.status || 'network'}): ${err.message}`;
+    if (err.status === 404) {
+      text =
+        'Error: provider not found. Pass an entity_id (e.g. "ent_…") or slug exactly as returned by search_providers.';
+    } else {
+      // 403 (vertical binding), 429 (quota) and anything else: relay the
+      // server's error and upgrade text verbatim — no client-side rewording.
+      text = `Error (${err.status || 'network'}): ${err.message}${err.upgrade ? ` ${err.upgrade}` : ''}`;
+    }
   } else {
     text = `Error: ${err instanceof Error ? err.message : String(err)}`;
   }

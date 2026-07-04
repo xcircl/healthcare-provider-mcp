@@ -34,13 +34,21 @@ export interface XcirclClientOptions {
 }
 
 export class XcirclApiError extends Error {
+  /** Server-provided upgrade path (e.g. on 403 vertical binding / 429 quota), verbatim. */
+  public readonly upgrade?: string;
+  /** The raw error body as returned by the API, for full-fidelity passthrough. */
+  public readonly body?: unknown;
+
   constructor(
     message: string,
     public readonly status: number,
     public readonly url: string,
+    extra?: { upgrade?: string; body?: unknown },
   ) {
     super(message);
     this.name = 'XcirclApiError';
+    this.upgrade = extra?.upgrade;
+    this.body = extra?.body;
   }
 }
 
@@ -77,14 +85,21 @@ export class XcirclClient {
     }
 
     if (!res.ok) {
+      // Pass the server's words through verbatim — the API's 403/429 bodies
+      // carry the vertical-binding / quota message plus an `upgrade` line,
+      // and the client must not reword or gate them.
       let message = `HTTP ${res.status}`;
+      let upgrade: string | undefined;
+      let body: unknown;
       try {
-        const body = (await res.json()) as { error?: string };
-        if (body?.error) message = body.error;
+        body = await res.json();
+        const b = body as { error?: string; upgrade?: string };
+        if (b?.error) message = b.error;
+        if (b?.upgrade) upgrade = b.upgrade;
       } catch {
         /* non-JSON error body — keep the status message */
       }
-      throw new XcirclApiError(message, res.status, url.toString());
+      throw new XcirclApiError(message, res.status, url.toString(), { upgrade, body });
     }
     return (await res.json()) as T;
   }
@@ -124,6 +139,8 @@ export class XcirclClient {
       slug: p.slug,
       name: p.name,
       tier: res.tier,
+      ...(res.plan !== undefined ? { plan: res.plan } : {}),
+      ...(res.usage !== undefined ? { usage: res.usage } : {}),
       compliance: hasSignals
         ? { legitscript: p.legitscript!, license: p.license!, fda: p.fda! }
         : null,

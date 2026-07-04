@@ -13,6 +13,16 @@ export type BusinessMode = 'online' | 'physical' | 'both';
 
 export type ApiTier = 'free' | 'paid';
 
+/** Key plan, echoed by the API on every response. Field cut stays binary
+ *  (free = identity, builder+ = full); plans differ in quota and verticals. */
+export type ApiPlan = 'free' | 'builder' | 'developer' | 'enterprise';
+
+/** Monthly call meter, present on metered plans (builder/developer). */
+export interface UsageMeter {
+  used: number;
+  quota: number;
+}
+
 /**
  * Publication boundary of a response. `verified` (default for every tier) =
  * only records whose identity passed verification. `tracked` = the wider
@@ -103,7 +113,10 @@ export interface Pagination {
 
 export interface SearchResponse {
   tier: ApiTier;
+  plan?: ApiPlan;
   publish_boundary: PublishBoundary;
+  /** Present on metered plans (builder/developer): monthly call meter. */
+  usage?: UsageMeter;
   /** Present on free-tier responses: what a key would add, and where to get one. */
   notice?: string;
   pagination: Pagination;
@@ -118,7 +131,9 @@ export interface SearchResponse {
 
 export interface ProviderResponse {
   tier: ApiTier;
+  plan?: ApiPlan;
   publish_boundary: PublishBoundary;
+  usage?: UsageMeter;
   notice?: string;
   data: Provider;
 }
@@ -135,6 +150,8 @@ export interface ComplianceResult {
   slug: string;
   name: string;
   tier: ApiTier;
+  plan?: ApiPlan;
+  usage?: UsageMeter;
   /** `null` on the free tier — compliance signals are paid fields. */
   compliance: ComplianceSignals | null;
   /** Present when `compliance` is null: how to unlock it. */

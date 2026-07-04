@@ -162,7 +162,8 @@ live [`/api/v1/sample/`](https://xcircl.com/api/v1/sample/) endpoint
 - **No key**: fully usable, 100% real data, plus a one-line notice about paid fields — the free experience is a real demo, and the wall you hit is a field/vertical/volume wall, never a "doesn't run" wall.
 - Rate limits and vertical binding are enforced **server-side** by the key, same as field tiering — this client contains zero gating logic.
 
-Full field dictionary: [docs/schema.md](./docs/schema.md).
+Full field dictionary: [docs/schema.md](./docs/schema.md) · recorded test
+runs against production: [docs/verification.md](./docs/verification.md).
 
 ## Repository layout
 
