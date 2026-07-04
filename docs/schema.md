@@ -31,7 +31,8 @@ Sourced from public registries (NPPES et al.). Available with **no API key**.
 ### PAID tier — verified signals + commercial
 
 Each signal carries **status + source + verification timestamp** — that
-triple is the product. Requires an API key ([xcircl.com/developers](https://xcircl.com/developers/)).
+triple is the product. Requires a paid key — self-serve from $99/mo
+([xcircl.com/developers](https://xcircl.com/developers/)).
 
 | Field | Type | Description |
 |---|---|---|
@@ -124,11 +125,15 @@ self-declare via `publish_tier`.
 Authorization: Bearer <your-key>
 ```
 
-| Tier | Fields | Notes |
-|---|---|---|
-| No key | FREE fields | Fully usable; responses carry a `notice` about paid fields |
-| Free key (register) | FREE fields | 500 requests/month |
-| Paid key | ALL fields | Rate limits per plan — see [xcircl.com/developers](https://xcircl.com/developers/) |
+| Tier | Fields | Requests | Verticals | Notes |
+|---|---|---|---|---|
+| No key | FREE fields | — | all | Fully usable; responses carry a `notice` about paid fields |
+| Free key ($0, register) | FREE fields | 1,000/mo | all | |
+| Builder key ($99/mo, self-serve) | ALL fields | 5,000/mo | 1 — key is bound to one vertical; cross-vertical requests return an upgrade notice | |
+| Developer key ($750/mo; Founding Customer, first 10: $375/mo locked 12 months) | ALL fields | 25,000/mo | multiple | |
+| Enterprise key | ALL fields + export | unlimited | all | Per contract — [contact sales](https://xcircl.com/developers/) |
 
-An unrecognised key falls back to the free tier with a notice (it never
-hard-fails), so demos keep working.
+Rate limits and vertical binding are enforced server-side by the key, same
+principle as field tiering — clients do no gating. An unrecognised key falls
+back to the free tier with a notice (it never hard-fails), so demos keep
+working.

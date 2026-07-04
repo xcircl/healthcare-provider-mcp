@@ -47,8 +47,8 @@ curl -sL "https://xcircl.com/api/v1/providers/?vertical=glp1&state=TX&limit=3"
 }
 ```
 
-Real data, real API, zero setup. `cash_price, compliance available with API
-key → [xcircl.com/developers](https://xcircl.com/developers/)`.
+Real data, real API, zero setup. `Full fields (cash_price, compliance) from
+$99/mo self-serve → [xcircl.com/developers](https://xcircl.com/developers/)`.
 
 ## Use it from Claude (MCP server)
 
@@ -114,7 +114,7 @@ Runnable examples (both work without any key):
 
 ```bash
 node examples/01-find-clinics.mjs Houston TX  # find clinics
-node examples/02-ai-tool-use.mjs              # give Claude live xcircl tools (needs ANTHROPIC_API_KEY)
+node examples/02-ai-tool-use.mjs              # give Claude live xcircl tools (bring your own ANTHROPIC_API_KEY)
 ```
 
 ## Where the data comes from
@@ -139,7 +139,7 @@ live [`/api/v1/sample/`](https://xcircl.com/api/v1/sample/) endpoint
 
 ## Free vs paid fields
 
-| Field | Free (no key) | Paid key |
+| Field | Free (no key / free key) | Builder+ ($99/mo and up) |
 |---|:---:|:---:|
 | `entity_id`, `slug`, `vertical`, `name` | ✅ | ✅ |
 | `city`, `state`, `latitude`, `longitude` | ✅ | ✅ |
@@ -150,9 +150,17 @@ live [`/api/v1/sample/`](https://xcircl.com/api/v1/sample/) endpoint
 | `price` — published cash price | — | ✅ |
 | source + `verified_at` on every signal | — | ✅ |
 
-- **No key**: fully usable, 100% real data, plus a one-line notice about paid fields.
-- **Free key** (register at [xcircl.com/developers](https://xcircl.com/developers/)): 500 requests/month, same fields.
-- **Paid key**: all fields, rate limits per plan.
+## Plans
+
+| Plan | Price | Fields | Requests | Verticals |
+|---|---|---|---|---|
+| **Free** | $0 (register at [xcircl.com/developers](https://xcircl.com/developers/)) | identity fields | 1,000/mo | all |
+| **Builder** | **$99/mo** — credit-card self-serve | **all fields** | 5,000/mo | 1 (key-bound) |
+| **Developer** | $750/mo · Founding Customer (first 10): $375/mo locked 12 months | all fields | 25,000/mo | multiple |
+| **Enterprise** | [contact sales](https://xcircl.com/developers/) | all fields + export | unlimited | all |
+
+- **No key**: fully usable, 100% real data, plus a one-line notice about paid fields — the free experience is a real demo, and the wall you hit is a field/vertical/volume wall, never a "doesn't run" wall.
+- Rate limits and vertical binding are enforced **server-side** by the key, same as field tiering — this client contains zero gating logic.
 
 Full field dictionary: [docs/schema.md](./docs/schema.md).
 

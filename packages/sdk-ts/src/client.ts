@@ -20,7 +20,7 @@ export const DEFAULT_BASE_URL = 'https://xcircl.com/api/v1';
 
 /** The one-line paid-field hint shown whenever a response is free-tier. */
 export const UPGRADE_HINT =
-  'cash_price, compliance available with API key → https://xcircl.com/developers/';
+  'Full fields (cash_price, compliance) from $99/mo self-serve → https://xcircl.com/developers/';
 
 export interface XcirclClientOptions {
   /** xcircl API key. Omit for the free tier (identity fields only). */

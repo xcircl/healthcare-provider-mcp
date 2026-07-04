@@ -17,6 +17,11 @@ import { XcirclClient } from '@xcircl/sdk';
 const question =
   process.argv[2] ?? 'Find GLP-1 clinics in Houston, TX and summarize what you know about one of them.';
 
+if (!process.env.ANTHROPIC_API_KEY) {
+  console.error('This example calls the Claude API — set ANTHROPIC_API_KEY (bring your own key) and re-run.');
+  process.exit(1);
+}
+
 const xcircl = new XcirclClient({ apiKey: process.env.XCIRCL_API_KEY });
 const anthropic = new Anthropic();
 
