@@ -8,11 +8,12 @@
 [![States covered](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fxcircl.com%2Fapi%2Fv1%2Fcoverage%2F&query=%24.verified.states&label=states&color=blue)](https://xcircl.com/data/coverage/)
 [![Verticals live](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fxcircl.com%2Fapi%2Fv1%2Fcoverage%2F&query=%24.verticals_live%5B*%5D&label=verticals%20live&color=orange)](https://xcircl.com/data/coverage/)
 
-Query US regulated-care providers (GLP-1 / weight-management clinics today;
-more verticals coming) in natural language or function calls — as an **MCP
-server** for Claude/ChatGPT, or a **TypeScript SDK** for your own product.
-The free tier works with **no API key**; verified compliance signals and cash
-prices unlock with one.
+A **compliance-aware GLP-1 provider data API for AI agents, clinic finders,
+and diligence teams** — query US regulated-care providers (GLP-1 /
+weight-management clinics today; more verticals coming) in natural language
+or function calls, as an **MCP server** for Claude/ChatGPT or a **TypeScript
+SDK** for your own product. The free tier works with **no API key**; verified
+compliance signals and cash prices unlock with one.
 
 > Counts in the badges above are pulled live from
 > [`/api/v1/coverage/`](https://xcircl.com/api/v1/coverage/) — the numbers

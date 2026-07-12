@@ -1,8 +1,18 @@
 {
   "name": "@xcircl/sdk",
   "version": "0.1.0",
-  "description": "TypeScript SDK for the xcircl API — verified U.S. regulated-care provider data. Free tier works without a key.",
+  "description": "Compliance-aware GLP-1 provider data API client for AI agents, clinic finders, and diligence teams. Free tier works without a key; verified compliance signals and cash prices unlock with one.",
   "license": "MIT",
+  "author": "xcircl <dev@xcircl.com> (https://xcircl.com)",
+  "homepage": "https://github.com/xcircl/xcircl-agent#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xcircl/xcircl-agent.git",
+    "directory": "packages/sdk-ts"
+  },
+  "bugs": {
+    "url": "https://github.com/xcircl/xcircl-agent/issues"
+  },
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -13,11 +23,17 @@
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md",
+    "LICENSE"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsc",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run clean && npm run build"
   },
   "keywords": [
     "xcircl",
@@ -25,7 +41,10 @@
     "glp1",
     "provider-data",
     "compliance",
-    "nppes"
+    "nppes",
+    "fda",
+    "clinic-finder",
+    "diligence"
   ],
   "engines": {
     "node": ">=18.17"

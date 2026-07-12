@@ -1,20 +1,36 @@
 {
   "name": "@xcircl/mcp-server",
   "version": "0.1.0",
-  "description": "MCP server for xcircl — lets Claude/ChatGPT query verified U.S. regulated-care provider data as tools. Free tier works without a key.",
+  "description": "MCP server for xcircl — compliance-aware GLP-1 provider data as tools for Claude/ChatGPT and other AI agents. Free tier works without a key.",
   "license": "MIT",
+  "author": "xcircl <dev@xcircl.com> (https://xcircl.com)",
+  "homepage": "https://github.com/xcircl/xcircl-agent#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xcircl/xcircl-agent.git",
+    "directory": "packages/mcp-server"
+  },
+  "bugs": {
+    "url": "https://github.com/xcircl/xcircl-agent/issues"
+  },
   "type": "module",
   "main": "dist/index.js",
   "bin": {
     "xcircl-mcp": "dist/index.js"
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md",
+    "LICENSE"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsc && chmod +x dist/index.js",
     "start": "node dist/index.js",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run clean && npm run build"
   },
   "keywords": [
     "mcp",
@@ -22,14 +38,16 @@
     "xcircl",
     "healthcare",
     "glp1",
-    "provider-data"
+    "provider-data",
+    "compliance",
+    "ai-agents"
   ],
   "engines": {
     "node": ">=18.17"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0",
-    "@xcircl/sdk": "0.1.0",
+    "@xcircl/sdk": "^0.1.0",
     "zod": "^3.25.76"
   },
   "devDependencies": {
