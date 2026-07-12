@@ -1,5 +1,8 @@
 # @xcircl/sdk
 
+[![npm](https://img.shields.io/npm/v/@xcircl/sdk?color=cb3837&logo=npm)](https://www.npmjs.com/package/@xcircl/sdk)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE)
+
 **Compliance-aware GLP-1 provider data API for AI agents, clinic finders, and
 diligence teams.** Zero-dependency TypeScript client for
 [xcircl.com](https://xcircl.com) — verified U.S. regulated-care provider data,

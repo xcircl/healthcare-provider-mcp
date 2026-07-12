@@ -3,6 +3,8 @@
 **Verified U.S. regulated-care provider data for your app or AI. Source-linked, timestamped.**
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE)
+[![npm @xcircl/sdk](https://img.shields.io/npm/v/@xcircl/sdk?label=%40xcircl%2Fsdk&color=cb3837&logo=npm)](https://www.npmjs.com/package/@xcircl/sdk)
+[![npm @xcircl/mcp-server](https://img.shields.io/npm/v/@xcircl/mcp-server?label=%40xcircl%2Fmcp-server&color=cb3837&logo=npm)](https://www.npmjs.com/package/@xcircl/mcp-server)
 [![Verified providers](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fxcircl.com%2Fapi%2Fv1%2Fcoverage%2F&query=%24.verified.total&label=verified%20providers&color=blue)](https://xcircl.com/data/coverage/)
 [![Tracked providers](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fxcircl.com%2Fapi%2Fv1%2Fcoverage%2F&query=%24.tracked.total&label=tracked&color=lightgrey)](https://xcircl.com/data/coverage/)
 [![States covered](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fxcircl.com%2Fapi%2Fv1%2Fcoverage%2F&query=%24.verified.states&label=states&color=blue)](https://xcircl.com/data/coverage/)
@@ -53,17 +55,15 @@ $99/mo self-serve → [xcircl.com/developers](https://xcircl.com/developers/)`.
 
 ## Use it from Claude (MCP server)
 
-```bash
-git clone https://github.com/xcircl/xcircl-agent.git
-cd xcircl-agent && npm install && npm run build
-```
+No clone, no build — `npx` pulls
+[`@xcircl/mcp-server`](https://www.npmjs.com/package/@xcircl/mcp-server) from npm.
 
 **Claude Code:**
 
 ```bash
-claude mcp add xcircl -- node /path/to/xcircl-agent/packages/mcp-server/dist/index.js
+claude mcp add xcircl -- npx -y @xcircl/mcp-server
 # with a key (unlocks price + compliance fields):
-claude mcp add xcircl -e XCIRCL_API_KEY=your-key -- node /path/to/xcircl-agent/packages/mcp-server/dist/index.js
+claude mcp add xcircl -e XCIRCL_API_KEY=your-key -- npx -y @xcircl/mcp-server
 ```
 
 **Claude Desktop** (`claude_desktop_config.json`):
@@ -72,8 +72,8 @@ claude mcp add xcircl -e XCIRCL_API_KEY=your-key -- node /path/to/xcircl-agent/p
 {
   "mcpServers": {
     "xcircl": {
-      "command": "node",
-      "args": ["/path/to/xcircl-agent/packages/mcp-server/dist/index.js"],
+      "command": "npx",
+      "args": ["-y", "@xcircl/mcp-server"],
       "env": { "XCIRCL_API_KEY": "optional — omit for the free tier" }
     }
   }
@@ -92,7 +92,7 @@ The server exposes three tools:
 ## Use it from your code (TypeScript SDK)
 
 ```bash
-npm install && npm run build   # from the repo root
+npm install @xcircl/sdk
 ```
 
 ```ts
@@ -103,7 +103,7 @@ const xcircl = new XcirclClient();            // no key → free tier
 
 const { data, notice } = await xcircl.searchProviders({
   vertical: 'glp1',
-  city: 'Austin',
+  city: 'Houston',
   state: 'TX',
 });
 
@@ -111,9 +111,12 @@ for (const p of data) console.log(p.name, p.city, p.npi);
 if (notice) console.log(notice);              // what a key would add
 ```
 
-Runnable examples (both work without any key):
+Runnable examples live in the repo (clone it to run them; both work without
+any key):
 
 ```bash
+git clone https://github.com/xcircl/xcircl-agent.git
+cd xcircl-agent && npm install && npm run build
 node examples/01-find-clinics.mjs Houston TX  # find clinics
 node examples/02-ai-tool-use.mjs              # give Claude live xcircl tools (bring your own ANTHROPIC_API_KEY)
 ```

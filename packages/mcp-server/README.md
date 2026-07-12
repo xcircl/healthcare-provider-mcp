@@ -1,5 +1,8 @@
 # @xcircl/mcp-server
 
+[![npm](https://img.shields.io/npm/v/@xcircl/mcp-server?color=cb3837&logo=npm)](https://www.npmjs.com/package/@xcircl/mcp-server)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE)
+
 **Compliance-aware GLP-1 provider data as MCP tools** — let Claude, ChatGPT
 or any MCP client query [xcircl.com](https://xcircl.com)'s verified U.S.
 regulated-care provider data: AI agents, clinic finders, diligence workflows.
