@@ -38,13 +38,18 @@
   "keywords": [
     "xcircl",
     "healthcare",
+    "healthcare-api",
     "glp1",
     "provider-data",
+    "provider-directory",
+    "regulated-care",
     "compliance",
     "nppes",
     "fda",
     "clinic-finder",
-    "diligence"
+    "diligence",
+    "llm-tools",
+    "ai-agents"
   ],
   "engines": {
     "node": ">=18.17"

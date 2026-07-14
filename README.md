@@ -1,4 +1,4 @@
-# xcircl-agent
+# US healthcare provider facts — MCP server & SDK (xcircl)
 
 **Verified U.S. regulated-care provider data for your app or AI. Source-linked, timestamped.**
 
@@ -51,7 +51,7 @@ curl -sL "https://xcircl.com/api/v1/providers/?vertical=glp1&state=TX&limit=3"
 ```
 
 Real data, real API, zero setup. `Full fields (cash_price, compliance) from
-$99/mo self-serve → [xcircl.com/developers](https://xcircl.com/developers/)`.
+$99/mo self-serve → [xcircl.com/developers](https://xcircl.com/developers/pricing/)`.
 
 ## Use it from Claude (MCP server)
 
@@ -158,10 +158,10 @@ live [`/api/v1/sample/`](https://xcircl.com/api/v1/sample/) endpoint
 
 | Plan | Price | Fields | Requests | Verticals |
 |---|---|---|---|---|
-| **Free** | $0 (register at [xcircl.com/developers](https://xcircl.com/developers/)) | identity fields | 1,000/mo | all |
+| **Free** | $0 (register at [xcircl.com/developers](https://xcircl.com/developers/pricing/)) | identity fields | 1,000/mo | all |
 | **Builder** | **$99/mo** — credit-card self-serve | **all fields** | 5,000/mo | 1 (key-bound) |
 | **Developer** | $750/mo · Founding Customer (first 10): $375/mo locked 12 months | all fields | 25,000/mo | multiple |
-| **Enterprise** | [contact sales](https://xcircl.com/developers/) | all fields + export | unlimited | all |
+| **Enterprise** | [contact sales](https://xcircl.com/developers/pricing/) | all fields + export | unlimited | all |
 
 - **No key**: fully usable, 100% real data, plus a one-line notice about paid fields — the free experience is a real demo, and the wall you hit is a field/vertical/volume wall, never a "doesn't run" wall.
 - Rate limits and vertical binding are enforced **server-side** by the key, same as field tiering — this client contains zero gating logic.

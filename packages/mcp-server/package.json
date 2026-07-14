@@ -34,12 +34,20 @@
   },
   "keywords": [
     "mcp",
+    "mcp-server",
     "model-context-protocol",
+    "claude",
+    "anthropic",
+    "llm-tools",
     "xcircl",
     "healthcare",
+    "healthcare-mcp",
     "glp1",
     "provider-data",
+    "regulated-care",
     "compliance",
+    "nppes",
+    "fda",
     "ai-agents"
   ],
   "engines": {
