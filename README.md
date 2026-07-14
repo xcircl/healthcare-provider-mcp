@@ -115,8 +115,8 @@ Runnable examples live in the repo (clone it to run them; both work without
 any key):
 
 ```bash
-git clone https://github.com/xcircl/xcircl-agent.git
-cd xcircl-agent && npm install && npm run build
+git clone https://github.com/xcircl/healthcare-provider-mcp.git
+cd healthcare-provider-mcp && npm install && npm run build
 node examples/01-find-clinics.mjs Houston TX  # find clinics
 node examples/02-ai-tool-use.mjs              # give Claude live xcircl tools (bring your own ANTHROPIC_API_KEY)
 ```

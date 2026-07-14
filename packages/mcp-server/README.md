@@ -46,7 +46,7 @@ claude mcp add xcircl -e XCIRCL_API_KEY=your-key -- npx -y @xcircl/mcp-server
 Then ask: *“Find GLP-1 clinics in Houston and check their compliance.”*
 
 Full docs, TypeScript SDK and field dictionary:
-[github.com/xcircl/xcircl-agent](https://github.com/xcircl/xcircl-agent).
+[github.com/xcircl/healthcare-provider-mcp](https://github.com/xcircl/healthcare-provider-mcp).
 
 ## License
 

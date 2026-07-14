@@ -4,14 +4,14 @@
   "description": "MCP server for xcircl — compliance-aware GLP-1 provider data as tools for Claude/ChatGPT and other AI agents. Free tier works without a key.",
   "license": "MIT",
   "author": "xcircl <dev@xcircl.com> (https://xcircl.com)",
-  "homepage": "https://github.com/xcircl/xcircl-agent#readme",
+  "homepage": "https://github.com/xcircl/healthcare-provider-mcp#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/xcircl/xcircl-agent.git",
+    "url": "git+https://github.com/xcircl/healthcare-provider-mcp.git",
     "directory": "packages/mcp-server"
   },
   "bugs": {
-    "url": "https://github.com/xcircl/xcircl-agent/issues"
+    "url": "https://github.com/xcircl/healthcare-provider-mcp/issues"
   },
   "type": "module",
   "main": "dist/index.js",

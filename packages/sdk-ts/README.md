@@ -46,7 +46,7 @@ API surface: `searchProviders`, `getProvider`, `checkCompliance`,
 `.message`, `.upgrade` and `.body` — server messages are relayed verbatim.
 
 Full docs, field dictionary and MCP server:
-[github.com/xcircl/xcircl-agent](https://github.com/xcircl/xcircl-agent).
+[github.com/xcircl/healthcare-provider-mcp](https://github.com/xcircl/healthcare-provider-mcp).
 
 ## License
 

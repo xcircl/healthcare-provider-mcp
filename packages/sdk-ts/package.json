@@ -4,14 +4,14 @@
   "description": "Compliance-aware GLP-1 provider data API client for AI agents, clinic finders, and diligence teams. Free tier works without a key; verified compliance signals and cash prices unlock with one.",
   "license": "MIT",
   "author": "xcircl <dev@xcircl.com> (https://xcircl.com)",
-  "homepage": "https://github.com/xcircl/xcircl-agent#readme",
+  "homepage": "https://github.com/xcircl/healthcare-provider-mcp#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/xcircl/xcircl-agent.git",
+    "url": "git+https://github.com/xcircl/healthcare-provider-mcp.git",
     "directory": "packages/sdk-ts"
   },
   "bugs": {
-    "url": "https://github.com/xcircl/xcircl-agent/issues"
+    "url": "https://github.com/xcircl/healthcare-provider-mcp/issues"
   },
   "type": "module",
   "main": "dist/index.js",
