@@ -10,12 +10,16 @@
 [![States covered](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fxcircl.com%2Fapi%2Fv1%2Fcoverage%2F&query=%24.verified.states&label=states&color=blue)](https://xcircl.com/data/coverage/)
 [![Verticals live](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fxcircl.com%2Fapi%2Fv1%2Fcoverage%2F&query=%24.verticals_live%5B*%5D&label=verticals%20live&color=orange)](https://xcircl.com/data/coverage/)
 
-A **compliance-aware GLP-1 provider data API for AI agents, clinic finders,
-and diligence teams** — query US regulated-care providers (GLP-1 /
-weight-management clinics today; more verticals coming) in natural language
-or function calls, as an **MCP server** for Claude/ChatGPT or a **TypeScript
-SDK** for your own product. The free tier works with **no API key**; verified
-compliance signals and cash prices unlock with one.
+Query US regulated-care providers in natural language or function calls,
+cross-checked against official sources — NPPES, the FDA, LegitScript, and
+state licensing boards. Use it as an **MCP server** for Claude/ChatGPT or a
+**TypeScript SDK** for your own product; the free tier works with **no API
+key**, and it's built for AI agents, clinic finders, and diligence teams.
+
+GLP-1 / weight-management is the deepest vertical today (6,028 tracked ·
+869 verified). Pet care and medspa are entering the pipeline, and a US-wide
+provider identity layer (~9M providers across all specialties) is in
+engineering. Verified compliance signals and cash prices unlock with a key.
 
 > Counts in the badges above are pulled live from
 > [`/api/v1/coverage/`](https://xcircl.com/api/v1/coverage/) — the numbers

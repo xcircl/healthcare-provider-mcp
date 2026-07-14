@@ -3,9 +3,11 @@
 [![npm](https://img.shields.io/npm/v/@xcircl/mcp-server?color=cb3837&logo=npm)](https://www.npmjs.com/package/@xcircl/mcp-server)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE)
 
-**Compliance-aware GLP-1 provider data as MCP tools** — let Claude, ChatGPT
-or any MCP client query [xcircl.com](https://xcircl.com)'s verified U.S.
-regulated-care provider data: AI agents, clinic finders, diligence workflows.
+**US regulated-care provider facts as MCP tools** — let Claude, ChatGPT or any
+MCP client query [xcircl.com](https://xcircl.com)'s verified provider data,
+cross-checked against NPPES, the FDA, LegitScript, and state boards. GLP-1 is
+the deepest vertical today, with more in the pipeline. For AI agents, clinic
+finders, and diligence workflows.
 
 The free tier works with **no API key**. Set `XCIRCL_API_KEY` (self-serve
 from $99/mo) to unlock compliance signals and cash prices — field tiering is

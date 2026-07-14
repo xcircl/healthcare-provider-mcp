@@ -3,10 +3,11 @@
 [![npm](https://img.shields.io/npm/v/@xcircl/sdk?color=cb3837&logo=npm)](https://www.npmjs.com/package/@xcircl/sdk)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE)
 
-**Compliance-aware GLP-1 provider data API for AI agents, clinic finders, and
-diligence teams.** Zero-dependency TypeScript client for
-[xcircl.com](https://xcircl.com) — verified U.S. regulated-care provider data,
-source-linked and timestamped.
+**US regulated-care provider data for AI agents, clinic finders, and diligence
+teams.** Zero-dependency TypeScript client for
+[xcircl.com](https://xcircl.com) — verified provider facts cross-checked
+against NPPES, the FDA, LegitScript, and state boards; source-linked and
+timestamped. GLP-1 is the deepest vertical today, with more in the pipeline.
 
 The free tier works with **no API key**: identity fields (name, location, NPI)
 from public registries, plus a notice describing what a key adds. Paid keys
