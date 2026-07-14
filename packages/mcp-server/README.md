@@ -5,7 +5,8 @@
 
 **US regulated-care provider facts as MCP tools** — let Claude, ChatGPT or any
 MCP client query [xcircl.com](https://xcircl.com)'s verified provider data,
-cross-checked against NPPES, the FDA, LegitScript, and state boards. GLP-1 is
+cross-checked against NPPES, the FDA, and where available LegitScript and
+state boards. GLP-1 is
 the deepest vertical today, with more in the pipeline. For AI agents, clinic
 finders, and diligence workflows.
 

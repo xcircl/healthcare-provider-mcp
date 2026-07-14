@@ -8,11 +8,11 @@
 [![Verified providers](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fxcircl.com%2Fapi%2Fv1%2Fcoverage%2F&query=%24.verified.total&label=verified%20providers&color=blue)](https://xcircl.com/data/coverage/)
 [![Tracked providers](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fxcircl.com%2Fapi%2Fv1%2Fcoverage%2F&query=%24.tracked.total&label=tracked&color=lightgrey)](https://xcircl.com/data/coverage/)
 [![States covered](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fxcircl.com%2Fapi%2Fv1%2Fcoverage%2F&query=%24.verified.states&label=states&color=blue)](https://xcircl.com/data/coverage/)
-[![Verticals live](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fxcircl.com%2Fapi%2Fv1%2Fcoverage%2F&query=%24.verticals_live%5B*%5D&label=verticals%20live&color=orange)](https://xcircl.com/data/coverage/)
+[![Verticals live](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fxcircl.com%2Fapi%2Fv1%2Fcoverage%2F&query=%24.verticals_live&label=verticals%20live&color=orange)](https://xcircl.com/data/coverage/)
 
 Query US regulated-care providers in natural language or function calls,
-cross-checked against official sources — NPPES, the FDA, LegitScript, and
-state licensing boards. Use it as an **MCP server** for Claude/ChatGPT or a
+cross-checked against official sources — NPPES, the FDA, and where available
+LegitScript and state licensing boards. Use it as an **MCP server** for Claude/ChatGPT or a
 **TypeScript SDK** for your own product; the free tier works with **no API
 key**, and it's built for AI agents, clinic finders, and diligence teams.
 
