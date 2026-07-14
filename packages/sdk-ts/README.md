@@ -11,9 +11,10 @@ source-linked and
 timestamped. GLP-1 is the deepest vertical today, with more in the pipeline.
 
 The free tier works with **no API key**: identity fields (name, location, NPI)
-from public registries, plus a notice describing what a key adds. Paid keys
-(self-serve from $99/mo) unlock LegitScript / state-license / FDA compliance
-signals and published cash prices, each with source + verification timestamp.
+from public registries, plus a notice describing what a key adds. A paid key
+unlocks LegitScript / state-license / FDA compliance signals and published
+cash prices, each with source + verification timestamp — see
+[plans](https://xcircl.com/developers/pricing/).
 Field tiering, quotas and vertical binding are all enforced **server-side** —
 this client contains zero gating logic.
 

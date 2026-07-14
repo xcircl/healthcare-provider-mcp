@@ -31,8 +31,8 @@ Sourced from public registries (NPPES et al.). Available with **no API key**.
 ### PAID tier — verified signals + commercial
 
 Each signal carries **status + source + verification timestamp** — that
-triple is the product. Requires a paid key — self-serve from $99/mo
-([xcircl.com/developers](https://xcircl.com/developers/)).
+triple is the product. Requires a paid key — see
+[plans](https://xcircl.com/developers/pricing/).
 
 | Field | Type | Description |
 |---|---|---|
@@ -131,13 +131,15 @@ self-declare via `publish_tier`.
 Authorization: Bearer <your-key>
 ```
 
-| Tier | Fields | Requests | Verticals | Notes |
-|---|---|---|---|---|
-| No key | FREE fields | — | all | Fully usable; responses carry a `notice` about paid fields |
-| Free key ($0, register) | FREE fields | 1,000/mo | all | |
-| Builder key ($99/mo, self-serve) | ALL fields | 5,000/mo | 1 — key is bound to one vertical; cross-vertical requests return 403 (see below) | |
-| Developer key ($750/mo; Founding Customer, first 10: $375/mo locked 12 months) | ALL fields | 25,000/mo | multiple | |
-| Enterprise key | ALL fields + export | unlimited | all | Per contract — [contact sales](https://xcircl.com/developers/) |
+| Tier | Fields | Notes |
+|---|---|---|
+| No key | FREE fields | Fully usable; responses carry a `notice` about paid fields |
+| Free key | FREE fields | Metered |
+| Paid key | ALL fields | Monthly call quota and vertical binding vary by plan — the response echoes `plan` and, on metered plans, a `usage` meter |
+
+Plans, quotas and pricing are maintained in one place, on the website:
+**[xcircl.com/developers/pricing](https://xcircl.com/developers/pricing/)**.
+This repo deliberately carries no price or quota numbers — they would rot here.
 
 Rate limits and vertical binding are enforced server-side by the key, same
 principle as field tiering — clients do no gating. An unrecognised key falls

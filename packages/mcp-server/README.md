@@ -10,9 +10,10 @@ state boards. GLP-1 is
 the deepest vertical today, with more in the pipeline. For AI agents, clinic
 finders, and diligence workflows.
 
-The free tier works with **no API key**. Set `XCIRCL_API_KEY` (self-serve
-from $99/mo) to unlock compliance signals and cash prices — field tiering is
-enforced server-side; this server holds no data and no gating logic.
+The free tier works with **no API key**. Set `XCIRCL_API_KEY` to unlock
+compliance signals and cash prices ([plans](https://xcircl.com/developers/pricing/))
+— field tiering is enforced server-side; this server holds no data and no
+gating logic.
 
 ## Tools
 

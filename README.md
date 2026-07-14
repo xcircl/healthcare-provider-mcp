@@ -55,8 +55,8 @@ curl -sL "https://xcircl.com/api/v1/providers/?vertical=glp1&state=TX&limit=3"
 }
 ```
 
-Real data, real API, zero setup. `Full fields (cash_price, compliance) from
-$99/mo self-serve → [xcircl.com/developers](https://xcircl.com/developers/pricing/)`.
+Real data, real API, zero setup. Compliance fields (FDA, licenses, prices) and
+commercial use → [plans](https://xcircl.com/developers/pricing/).
 
 ## Use it from Claude (MCP server)
 
@@ -148,7 +148,7 @@ live [`/api/v1/sample/`](https://xcircl.com/api/v1/sample/) endpoint
 
 ## Free vs paid fields
 
-| Field | Free (no key / free key) | Builder+ ($99/mo and up) |
+| Field | Free (no key) | With a paid key |
 |---|:---:|:---:|
 | `entity_id`, `slug`, `vertical`, `name` | ✅ | ✅ |
 | `city`, `state`, `latitude`, `longitude` | ✅ | ✅ |
@@ -159,17 +159,12 @@ live [`/api/v1/sample/`](https://xcircl.com/api/v1/sample/) endpoint
 | `price` — published cash price | — | ✅ |
 | source + `verified_at` on every signal | — | ✅ |
 
-## Plans
+**Free tier: no key needed** — identity fields, great for evaluation.
+**Compliance fields (FDA, licenses, prices) and commercial use** → plans at
+[xcircl.com/developers/pricing](https://xcircl.com/developers/pricing/).
 
-| Plan | Price | Fields | Requests | Verticals |
-|---|---|---|---|---|
-| **Free** | $0 (register at [xcircl.com/developers](https://xcircl.com/developers/pricing/)) | identity fields | 1,000/mo | all |
-| **Builder** | **$99/mo** — credit-card self-serve | **all fields** | 5,000/mo | 1 (key-bound) |
-| **Developer** | $750/mo · Founding Customer (first 10): $375/mo locked 12 months | all fields | 25,000/mo | multiple |
-| **Enterprise** | [contact sales](https://xcircl.com/developers/pricing/) | all fields + export | unlimited | all |
-
-- **No key**: fully usable, 100% real data, plus a one-line notice about paid fields — the free experience is a real demo, and the wall you hit is a field/vertical/volume wall, never a "doesn't run" wall.
-- Rate limits and vertical binding are enforced **server-side** by the key, same as field tiering — this client contains zero gating logic.
+- **No key**: fully usable, 100% real data, plus a one-line notice about paid fields — the free experience is a real demo, and the wall you hit is a field wall, never a "doesn't run" wall.
+- Field tiering, rate limits and vertical binding are all enforced **server-side** by the key — this client contains zero gating logic.
 
 Full field dictionary: [docs/schema.md](./docs/schema.md) · recorded test
 runs against production: [docs/verification.md](./docs/verification.md).
