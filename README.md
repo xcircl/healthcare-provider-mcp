@@ -13,9 +13,9 @@
 **Verify any US healthcare provider** — query them in natural language or
 function calls, cross-checked against official sources: NPPES, the FDA, and
 where available LegitScript and state licensing boards. Use it as an **MCP
-server** for Claude/ChatGPT or a **TypeScript SDK** for your own product; the
-free tier works with **no API key**, and it's built for AI agents, clinic
-finders, and diligence teams.
+server** for Claude/ChatGPT or a **TypeScript SDK** for your own product; a
+**free key** takes 30 seconds (email signup), and it's built for AI agents,
+clinic finders, and diligence teams.
 
 GLP-1 / weight-management is the deepest vertical today (6,028 tracked ·
 869 verified). A US-wide provider identity layer (~9M providers across all
@@ -26,16 +26,20 @@ compliance signals and cash prices unlock with a key.
 > [`/api/v1/coverage/`](https://xcircl.com/api/v1/coverage/) — the numbers
 > update as the dataset grows.
 
-## 30-second quickstart (no key, no install)
+## 30-second quickstart
+
+Grab a free key (email signup, instant) →
+**[xcircl.com/developers/signup](https://xcircl.com/developers/signup)**, then:
 
 ```bash
-curl -sL "https://xcircl.com/api/v1/providers/?vertical=glp1&state=TX&limit=3"
+export XCIRCL_API_KEY=your-free-key
+curl -sL -H "Authorization: Bearer $XCIRCL_API_KEY" \
+  "https://xcircl.com/api/v1/providers/?vertical=glp1&state=TX&limit=3"
 ```
 
 ```jsonc
 {
   "tier": "free",
-  "notice": "Free tier: identity fields only. Verified compliance signals, price and timestamps require a key — see /developers/pricing/.",
   "pagination": { "total": 15, "limit": 3, "offset": 0, "returned": 3 },
   "data": [
     {
@@ -55,19 +59,22 @@ curl -sL "https://xcircl.com/api/v1/providers/?vertical=glp1&state=TX&limit=3"
 }
 ```
 
-Real data, real API, zero setup. Compliance fields (FDA, licenses, prices) and
-commercial use → [plans](https://xcircl.com/developers/pricing/).
+Real data, real API. A free key returns identity fields — enough to evaluate.
+Compliance fields (FDA, licenses, prices) and commercial use →
+[plans](https://xcircl.com/developers/pricing/).
 
 ## Use it from Claude (MCP server)
 
 No clone, no build — `npx` pulls
 [`@xcircl/mcp-server`](https://www.npmjs.com/package/@xcircl/mcp-server) from npm.
 
+Get a free key (email signup, 30s) →
+[xcircl.com/developers/signup](https://xcircl.com/developers/signup). A paid
+key additionally unlocks price + compliance fields.
+
 **Claude Code:**
 
 ```bash
-claude mcp add xcircl -- npx -y @xcircl/mcp-server
-# with a key (unlocks price + compliance fields):
 claude mcp add xcircl -e XCIRCL_API_KEY=your-key -- npx -y @xcircl/mcp-server
 ```
 
@@ -79,7 +86,7 @@ claude mcp add xcircl -e XCIRCL_API_KEY=your-key -- npx -y @xcircl/mcp-server
     "xcircl": {
       "command": "npx",
       "args": ["-y", "@xcircl/mcp-server"],
-      "env": { "XCIRCL_API_KEY": "optional — omit for the free tier" }
+      "env": { "XCIRCL_API_KEY": "your-key" }
     }
   }
 }
@@ -92,7 +99,7 @@ The server exposes three tools:
 |---|---|
 | `search_providers` | Filter by vertical / city / state / business mode |
 | `get_provider` | One full record by `entity_id` or slug |
-| `check_compliance` | LegitScript / state-license / FDA signals (paid fields — the tool still answers without a key and says how to unlock) |
+| `check_compliance` | LegitScript / state-license / FDA signals (paid fields — a free-tier key returns identity plus a notice on how to unlock) |
 
 ## Use it from your code (TypeScript SDK)
 
@@ -103,8 +110,8 @@ npm install @xcircl/sdk
 ```ts
 import { XcirclClient } from '@xcircl/sdk';
 
-const xcircl = new XcirclClient();            // no key → free tier
-// const xcircl = new XcirclClient({ apiKey: process.env.XCIRCL_API_KEY });
+const xcircl = new XcirclClient({ apiKey: process.env.XCIRCL_API_KEY });
+// free key → identity fields; paid key → + compliance & price
 
 const { data, notice } = await xcircl.searchProviders({
   vertical: 'glp1',
@@ -148,7 +155,7 @@ live [`/api/v1/sample/`](https://xcircl.com/api/v1/sample/) endpoint
 
 ## Free vs paid fields
 
-| Field | Free (no key) | With a paid key |
+| Field | Free key | Paid key |
 |---|:---:|:---:|
 | `entity_id`, `slug`, `vertical`, `name` | ✅ | ✅ |
 | `city`, `state`, `latitude`, `longitude` | ✅ | ✅ |
@@ -159,11 +166,11 @@ live [`/api/v1/sample/`](https://xcircl.com/api/v1/sample/) endpoint
 | `price` — published cash price | — | ✅ |
 | source + `verified_at` on every signal | — | ✅ |
 
-**Free tier: no key needed** — identity fields, great for evaluation.
+**Free key (email signup, 30s)** — identity fields, great for evaluation.
 **Compliance fields (FDA, licenses, prices) and commercial use** → plans at
 [xcircl.com/developers/pricing](https://xcircl.com/developers/pricing/).
 
-- **No key**: fully usable, 100% real data, plus a one-line notice about paid fields — the free experience is a real demo, and the wall you hit is a field wall, never a "doesn't run" wall.
+- A **free key** returns 100% real identity data plus a one-line notice on what a paid key adds — the wall you hit is a field wall, and any missing/invalid key gets a clear 401 pointing to signup.
 - Field tiering, rate limits and vertical binding are all enforced **server-side** by the key — this client contains zero gating logic.
 
 Full field dictionary: [docs/schema.md](./docs/schema.md) · recorded test
