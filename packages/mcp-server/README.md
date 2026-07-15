@@ -10,11 +10,10 @@ state boards. GLP-1 is
 the deepest vertical today, with more in the pipeline. For AI agents, clinic
 finders, and diligence workflows.
 
-Set `XCIRCL_API_KEY` to a **free key** (email signup, 30s →
-[signup](https://xcircl.com/developers/signup)) for identity fields, or a paid
-key to unlock compliance signals and cash prices
-([plans](https://xcircl.com/developers/pricing/)) — field tiering is enforced
-server-side; this server holds no data and no gating logic.
+The free tier works with **no API key**. Set `XCIRCL_API_KEY` to unlock
+compliance signals and cash prices ([plans](https://xcircl.com/developers/pricing/))
+— field tiering is enforced server-side; this server holds no data and no
+gating logic.
 
 ## Tools
 
@@ -29,6 +28,8 @@ server-side; this server holds no data and no gating logic.
 **Claude Code:**
 
 ```bash
+claude mcp add xcircl -- npx -y @xcircl/mcp-server
+# with a key:
 claude mcp add xcircl -e XCIRCL_API_KEY=your-key -- npx -y @xcircl/mcp-server
 ```
 
@@ -40,7 +41,7 @@ claude mcp add xcircl -e XCIRCL_API_KEY=your-key -- npx -y @xcircl/mcp-server
     "xcircl": {
       "command": "npx",
       "args": ["-y", "@xcircl/mcp-server"],
-      "env": { "XCIRCL_API_KEY": "your-key" }
+      "env": { "XCIRCL_API_KEY": "optional — omit for the free tier" }
     }
   }
 }

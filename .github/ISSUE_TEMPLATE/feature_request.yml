@@ -1,0 +1,22 @@
+name: Feature request
+description: Suggest an improvement to the SDK or MCP server
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What are you trying to do?
+      description: The use case or problem, not just the proposed solution.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: What would you like the SDK / MCP server to do?
+  - type: markdown
+    attributes:
+      value: |
+        Note: this repo is the open-source client. Requests about the **data**
+        (new verticals, coverage, fields) are product decisions for the hosted
+        API — mention them here and we'll route them, but they may live elsewhere.

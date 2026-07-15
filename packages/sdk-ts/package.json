@@ -33,6 +33,7 @@
   "scripts": {
     "build": "tsc",
     "clean": "rm -rf dist",
+    "typecheck": "tsc --noEmit -p tsconfig.typecheck.json",
     "prepublishOnly": "npm run clean && npm run build"
   },
   "keywords": [

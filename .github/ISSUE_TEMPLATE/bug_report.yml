@@ -1,0 +1,45 @@
+name: Bug report
+description: Something in the SDK or MCP server isn't working
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for filing! For **security vulnerabilities**, do not use this form —
+        see [SECURITY.md](../blob/main/SECURITY.md).
+        **Never paste a real API key** into this issue.
+  - type: dropdown
+    id: package
+    attributes:
+      label: Which package?
+      options:
+        - '@xcircl/sdk'
+        - '@xcircl/mcp-server'
+        - both / not sure
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Package version
+      placeholder: '0.1.0'
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you expect, and what happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Minimal reproduction
+      description: A short code snippet or the exact tool call / command.
+      render: shell
+  - type: input
+    id: env
+    attributes:
+      label: Environment
+      placeholder: 'Node 20.11 on macOS 14; Claude Desktop 0.x'
