@@ -1,17 +1,20 @@
 #!/usr/bin/env node
 /**
- * Example 1 — find GLP-1 clinics, no API key needed.
+ * Example 1 — find GLP-1 clinics with a free xcircl API key.
  *
  * Run from the repo root (after `npm install && npm run build`):
- *   node examples/01-find-clinics.mjs [city] [state]
- *   node examples/01-find-clinics.mjs Houston TX
- *
- * Add XCIRCL_API_KEY=... to unlock cash price + compliance fields.
+ *   XCIRCL_API_KEY=... node examples/01-find-clinics.mjs [city] [state]
+ *   XCIRCL_API_KEY=... node examples/01-find-clinics.mjs Houston TX
  */
 
 import { XcirclClient } from '@xcircl/sdk';
 
 const [city, state] = [process.argv[2], process.argv[3] ?? (process.argv[2] ? undefined : 'TX')];
+
+if (!process.env.XCIRCL_API_KEY) {
+  console.error('Set XCIRCL_API_KEY first — create a free key at https://xcircl.com/developers/signup/.');
+  process.exit(1);
+}
 
 const client = new XcirclClient({ apiKey: process.env.XCIRCL_API_KEY });
 

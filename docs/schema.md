@@ -12,7 +12,8 @@ This document is the field dictionary. The TypeScript source of truth is
 
 ### FREE tier — public identity
 
-Sourced from public registries (NPPES et al.). Available with **no API key**.
+Sourced from public registries (NPPES et al.). Returned on the **free key**
+tier and up.
 
 | Field | Type | Description |
 |---|---|---|
@@ -112,9 +113,9 @@ per-state breakdowns, signal counts, `verticals_live`, `generated_at`.
 
 ### `GET /api/v1/sample/`
 
-~50 clean demo records in the **paid schema** (verified-only) so you can see
-the full shape without a key. This is the only sanctioned demo data source —
-this repository itself contains zero data files.
+~50 clean demo records in the **paid schema** (verified-only) so you can
+inspect the full shape before wiring up a paid key. This is the only
+sanctioned demo data source — this repository itself contains zero data files.
 
 ## Publication boundary (`publish_boundary`)
 
@@ -133,18 +134,17 @@ Authorization: Bearer <your-key>
 
 | Tier | Fields | Notes |
 |---|---|---|
-| No key | FREE fields | Fully usable; responses carry a `notice` about paid fields |
-| Free key | FREE fields | Metered |
+| Free key | FREE fields | Email signup, instant — [signup](https://xcircl.com/developers/signup). Metered; responses carry a `notice` about paid fields |
 | Paid key | ALL fields | Monthly call quota and vertical binding vary by plan — the response echoes `plan` and, on metered plans, a `usage` meter |
 
-Plans, quotas and pricing are maintained in one place, on the website:
+A missing or unrecognised key returns `401` with a notice pointing to signup —
+a free key is 30 seconds away. Plans, quotas and pricing are maintained in one
+place, on the website:
 **[xcircl.com/developers/pricing](https://xcircl.com/developers/pricing/)**.
 This repo deliberately carries no price or quota numbers — they would rot here.
 
 Rate limits and vertical binding are enforced server-side by the key, same
-principle as field tiering — clients do no gating. An unrecognised key falls
-back to the free tier with a notice (it never hard-fails), so demos keep
-working.
+principle as field tiering — clients do no gating.
 
 ## Error responses (verbatim)
 

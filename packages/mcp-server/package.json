@@ -1,7 +1,7 @@
 {
   "name": "@xcircl/mcp-server",
   "version": "0.1.0",
-  "description": "MCP server for xcircl — US regulated-care provider facts (cross-checked against NPPES, FDA, and where available LegitScript & state boards) as tools for Claude/ChatGPT and other AI agents. Free tier works without a key.",
+  "description": "MCP server for xcircl — US regulated-care provider facts (cross-checked against NPPES, FDA, and where available LegitScript & state boards) as tools for Claude/ChatGPT and other AI agents. A free API key is required.",
   "license": "MIT",
   "author": "xcircl <dev@xcircl.com> (https://xcircl.com)",
   "homepage": "https://github.com/xcircl/healthcare-provider-mcp#readme",
