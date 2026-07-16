@@ -1,9 +1,9 @@
 /**
  * XcirclClient — a thin fetch wrapper over https://xcircl.com/api/v1.
  *
- * Zero dependencies (Node 18+ global fetch). Works without an API key:
- * the free tier returns identity fields plus a `notice` telling you what a
- * key unlocks. Field tiering happens entirely server-side.
+ * Zero dependencies (Node 18+ global fetch). Every request uses an API key;
+ * a free key returns identity fields and paid plans unlock additional fields.
+ * Field tiering happens entirely server-side.
  *
  * Production-hardening:
  *   - retries 5xx and network errors with exponential backoff (never 4xx)
@@ -26,11 +26,11 @@ export const DEFAULT_BASE_URL = 'https://xcircl.com/api/v1';
 /** The one-line paid-field hint shown whenever a response is free-tier.
  *  Deliberately carries no price: pricing lives on the website, single-sourced. */
 export const UPGRADE_HINT =
-  'Full fields (cash_price, compliance) require an API key → https://xcircl.com/developers/pricing/';
+  'Full fields (cash_price, compliance) require paid access → https://xcircl.com/developers/pricing/';
 
 export interface XcirclClientOptions {
-  /** xcircl API key. Omit for the free tier (identity fields only). */
-  apiKey?: string;
+  /** xcircl API key. Free keys are available at xcircl.com/developers/signup. */
+  apiKey: string;
   /** Override the API root — for testing only. */
   baseUrl?: string;
   /** Request timeout in milliseconds (default 30 000). */
@@ -98,7 +98,7 @@ const isSampleResponse: Validator<SampleResponse> = (d): d is SampleResponse =>
   isObject(d) && Array.isArray(d.data);
 
 export class XcirclClient {
-  private readonly apiKey?: string;
+  private readonly apiKey: string;
   private readonly baseUrl: string;
   private readonly timeoutMs: number;
   private readonly fetchImpl: typeof fetch;
@@ -106,8 +106,14 @@ export class XcirclClient {
   private readonly retryBaseMs: number;
   private readonly validateResponses: boolean;
 
-  constructor(options: XcirclClientOptions = {}) {
-    this.apiKey = options.apiKey;
+  constructor(options: XcirclClientOptions) {
+    const apiKey = options.apiKey?.trim();
+    if (!apiKey) {
+      throw new Error(
+        'XcirclClient requires apiKey. Create a free key at https://xcircl.com/developers/signup/.',
+      );
+    }
+    this.apiKey = apiKey;
     this.baseUrl = (options.baseUrl ?? DEFAULT_BASE_URL).replace(/\/+$/, '');
     this.timeoutMs = options.timeoutMs ?? 30_000;
     this.fetchImpl = options.fetch ?? fetch;
@@ -129,7 +135,7 @@ export class XcirclClient {
       if (v !== undefined && v !== '') url.searchParams.set(k, String(v));
     }
     const headers: Record<string, string> = { accept: 'application/json' };
-    if (this.apiKey) headers.authorization = `Bearer ${this.apiKey}`;
+    headers.authorization = `Bearer ${this.apiKey}`;
 
     for (let attempt = 0; ; attempt++) {
       let res: Response;
@@ -215,7 +221,7 @@ export class XcirclClient {
 
   /**
    * Compliance signals (LegitScript / state licenses / FDA) for one provider.
-   * These are paid fields: without a key you get the provider's identity,
+   * These are plan-gated fields: a free key returns the provider's identity,
    * `compliance: null`, and a notice explaining how to unlock them.
    */
   async checkCompliance(idOrSlug: string): Promise<ComplianceResult> {

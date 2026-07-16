@@ -6,9 +6,7 @@
  * Claude API tool calling so you can embed it in any app.
  *
  * Run from the repo root (after `npm install && npm run build`):
- *   ANTHROPIC_API_KEY=sk-ant-... node examples/02-ai-tool-use.mjs "Find GLP-1 clinics in Houston and tell me about one of them"
- *
- * Optional: XCIRCL_API_KEY=... to give the AI paid fields (price, compliance).
+ *   ANTHROPIC_API_KEY=sk-ant-... XCIRCL_API_KEY=... node examples/02-ai-tool-use.mjs "Find GLP-1 clinics in Houston and tell me about one of them"
  */
 
 import Anthropic from '@anthropic-ai/sdk';
@@ -21,6 +19,10 @@ if (!process.env.ANTHROPIC_API_KEY) {
   console.error('This example calls the Claude API — set ANTHROPIC_API_KEY (bring your own key) and re-run.');
   process.exit(1);
 }
+if (!process.env.XCIRCL_API_KEY) {
+  console.error('Set XCIRCL_API_KEY first — create a free key at https://xcircl.com/developers/signup/.');
+  process.exit(1);
+}
 
 const xcircl = new XcirclClient({ apiKey: process.env.XCIRCL_API_KEY });
 const anthropic = new Anthropic();
@@ -29,7 +31,7 @@ const tools = [
   {
     name: 'search_providers',
     description:
-      'Search verified U.S. regulated-care providers (GLP-1 vertical is live). Free tier returns identity fields plus a notice about paid fields.',
+      'Search verified U.S. regulated-care providers (GLP-1 vertical is live). A free xcircl key returns identity fields plus a notice about plan-gated fields.',
     input_schema: {
       type: 'object',
       properties: {
@@ -53,7 +55,7 @@ const tools = [
   {
     name: 'check_compliance',
     description:
-      'Compliance signals (LegitScript / state license / FDA screen) for one provider. Paid fields — without an xcircl key the result explains how to unlock them.',
+      'Compliance signals (LegitScript / state license / FDA screen) for one provider. These fields require an eligible xcircl plan.',
     input_schema: {
       type: 'object',
       properties: { id: { type: 'string', description: 'entity_id ("ent_…") or slug' } },

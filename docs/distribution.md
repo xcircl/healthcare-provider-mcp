@@ -38,8 +38,8 @@ One-liner (shared across listings):
 
 > **US healthcare provider facts as MCP tools** — search verified GLP-1 /
 > regulated-care providers with source-linked, timestamped compliance signals
-> (LegitScript, state license, FDA) and cash prices. Free tier works with no
-> API key.
+> (LegitScript, state license, FDA) and cash prices. A free API key takes about
+> 30 seconds to create.
 
 Tools to list: `search_providers`, `get_provider`, `check_compliance`.
 Install: `npx -y @xcircl/mcp-server`. License: MIT. Repo:
@@ -65,7 +65,7 @@ Submit via `https://smithery.ai/new` (or the "Submit server" link):
 - Repository: `https://github.com/xcircl/healthcare-provider-mcp`
 - Package: `@xcircl/mcp-server` (npm)
 - Run command: `npx -y @xcircl/mcp-server`
-- Config: optional env `XCIRCL_API_KEY` (string, omit for free tier)
+- Config: required env `XCIRCL_API_KEY` (free key from xcircl.com/developers/signup)
 - Description: one-liner above. Category: Healthcare / Data.
 
 ### PulseMCP (pulsemcp.com)
@@ -92,7 +92,7 @@ section, alphabetical). Suggested line:
 - [xcircl](https://github.com/xcircl/healthcare-provider-mcp) — US healthcare
   provider facts: verified GLP-1 / regulated-care providers with source-linked
   compliance signals (LegitScript, state license, FDA) and cash prices. Free
-  tier, no key required.
+  tier; a free API key is required.
 ```
 
 PR title: `Add xcircl healthcare-provider MCP server`. Follow their

@@ -39,7 +39,7 @@ function fakeSource(overrides: Partial<ProviderSource> = {}): ProviderSource {
       name: 'X Clinic',
       tier: 'free',
       compliance: null,
-      notice: 'Full fields require an API key.',
+      notice: 'Full fields require paid access.',
     }),
     ...overrides,
   };

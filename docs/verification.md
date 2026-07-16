@@ -15,17 +15,19 @@ repository.
   `fda`, `price`) present with source + `verified_at`, on both the SDK and
   MCP paths.
 
-## 2026-07-04 — Builder plan behaviors (four-tier pricing)
+## 2026-07-04 — Builder plan behaviors
 
 All runs with a Builder demo key bound to `glp1`, on **both** paths (SDK and
-MCP server). Outputs below are verbatim.
+MCP server). Outputs below preserve the response shape and client behavior
+without freezing live prices or quota numbers in this repository. The current
+commercial terms live on the website.
 
 ### 1. Full fields + metering
 
 SDK / MCP `search_providers` (vertical=glp1):
 
 ```
-tier: paid | plan: builder | usage: {"used":7,"quota":5000}
+tier: paid | plan: builder | usage: {"used":7,"quota":<plan quota>}
 paid fields on first record: legitscript, license, fda, price
 ```
 
@@ -50,14 +52,14 @@ SDK (`XcirclApiError`):
 ```
 status: 403
 message (verbatim): Your Builder plan is bound to the "glp1" vertical.
-upgrade (verbatim): Developer ($750/mo) unlocks multi-vertical access — see /developers/pricing/ or talk to sales.
+upgrade (verbatim): Developer unlocks multi-vertical access — see /developers/pricing/ or talk to sales.
 ```
 
 MCP:
 
 ```
 isError: true
-text: Error (403): Your Builder plan is bound to the "glp1" vertical. Developer ($750/mo) unlocks multi-vertical access — see /developers/pricing/ or talk to sales.
+text: Error (403): Your Builder plan is bound to the "glp1" vertical. Developer unlocks multi-vertical access — see /developers/pricing/ or talk to sales.
 ```
 
 ### 3. Quota 429 (replayed shape)
@@ -69,16 +71,16 @@ SDK (`XcirclApiError`):
 
 ```
 status: 429
-message (verbatim): Monthly call quota reached (5000 calls).
-upgrade (verbatim): Developer ($750/mo) raises the quota to 25,000 calls — see /developers/pricing/.
-raw body: {"error":"Monthly call quota reached (5000 calls).","plan":"builder","usage":{"used":5000,"quota":5000},"upgrade":"Developer ($750/mo) raises the quota to 25,000 calls — see /developers/pricing/."}
+message (verbatim): Monthly call quota reached.
+upgrade (verbatim): Developer raises the quota — see /developers/pricing/.
+raw body: {"error":"Monthly call quota reached.","plan":"builder","usage":{"used":100,"quota":100},"upgrade":"Developer raises the quota — see /developers/pricing/."}
 ```
 
 MCP:
 
 ```
 isError: true
-text: Error (429): Monthly call quota reached (5000 calls). Developer ($750/mo) raises the quota to 25,000 calls — see /developers/pricing/.
+text: Error (429): Monthly call quota reached. Developer raises the quota — see /developers/pricing/.
 ```
 
 In all cases the client relays the server's `error` + `upgrade` text

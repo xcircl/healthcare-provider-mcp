@@ -12,7 +12,8 @@ This document is the field dictionary. The TypeScript source of truth is
 
 ### FREE tier — public identity
 
-Sourced from public registries (NPPES et al.). Available with **no API key**.
+Sourced from public registries (NPPES et al.). Returned on the **free key**
+tier and up.
 
 | Field | Type | Description |
 |---|---|---|
@@ -88,7 +89,7 @@ view of the wider monitored set).
   "tier": "free",                    // or "paid" — decided by your key
   "plan": "free",                    // free | builder | developer | enterprise
   "publish_boundary": "verified",    // or "tracked" (include=tracked, free tier only)
-  "usage": { "used": 7, "quota": 5000 },           // metered plans (builder/developer) only
+  "usage": { "used": 7, "quota": 100 },            // metered plans only; actual quotas vary by plan
   "notice": "Free tier: identity fields only. …",  // free tier only
   "pagination": { "total": 15, "limit": 20, "offset": 0, "returned": 15 },
   "filters": { "vertical": "glp1", "state": "TX", "city": null, "business_mode": null },
@@ -112,9 +113,9 @@ per-state breakdowns, signal counts, `verticals_live`, `generated_at`.
 
 ### `GET /api/v1/sample/`
 
-~50 clean demo records in the **paid schema** (verified-only) so you can see
-the full shape without a key. This is the only sanctioned demo data source —
-this repository itself contains zero data files.
+~50 clean demo records in the **paid schema** (verified-only) so you can
+inspect the full shape before wiring up a paid key. This is the only
+sanctioned demo data source — this repository itself contains zero data files.
 
 ## Publication boundary (`publish_boundary`)
 
@@ -133,23 +134,24 @@ Authorization: Bearer <your-key>
 
 | Tier | Fields | Notes |
 |---|---|---|
-| No key | FREE fields | Fully usable; responses carry a `notice` about paid fields |
-| Free key | FREE fields | Metered |
+| Free key | FREE fields | Email signup, instant — [signup](https://xcircl.com/developers/signup). Metered; responses carry a `notice` about paid fields |
 | Paid key | ALL fields | Monthly call quota and vertical binding vary by plan — the response echoes `plan` and, on metered plans, a `usage` meter |
 
-Plans, quotas and pricing are maintained in one place, on the website:
+A missing or unrecognised key returns `401` with a notice pointing to signup —
+a free key is 30 seconds away. Plans, quotas and pricing are maintained in one
+place, on the website:
 **[xcircl.com/developers/pricing](https://xcircl.com/developers/pricing/)**.
 This repo deliberately carries no price or quota numbers — they would rot here.
 
 Rate limits and vertical binding are enforced server-side by the key, same
-principle as field tiering — clients do no gating. An unrecognised key falls
-back to the free tier with a notice (it never hard-fails), so demos keep
-working.
+principle as field tiering — clients do no gating.
 
 ## Error responses (verbatim)
 
-The SDK and MCP server relay these server messages **verbatim** — the
-`error` and `upgrade` texts below are exactly what callers see.
+The SDK and MCP server relay server messages **verbatim**. The examples below
+show the response shape without hard-coding live prices or quota numbers in
+this repository; the website is the single source of truth for current plan
+terms.
 
 **403 — Builder key used outside its bound vertical** (e.g. a glp1-bound key
 querying `vertical=medspa`):
@@ -157,19 +159,18 @@ querying `vertical=medspa`):
 ```json
 {
   "error": "Your Builder plan is bound to the \"glp1\" vertical.",
-  "upgrade": "Developer ($750/mo) unlocks multi-vertical access — see /developers/pricing/ or talk to sales."
+  "upgrade": "Developer unlocks multi-vertical access — see /developers/pricing/ or talk to sales."
 }
 ```
 
-**429 — monthly quota reached** (Builder example; Developer's `upgrade` line
-points to Enterprise instead):
+**429 — monthly quota reached** (example shape):
 
 ```json
 {
-  "error": "Monthly call quota reached (5000 calls).",
+  "error": "Monthly call quota reached.",
   "plan": "builder",
-  "usage": { "used": 5000, "quota": 5000 },
-  "upgrade": "Developer ($750/mo) raises the quota to 25,000 calls — see /developers/pricing/."
+  "usage": { "used": 100, "quota": 100 },
+  "upgrade": "Developer raises the quota — see /developers/pricing/."
 }
 ```
 

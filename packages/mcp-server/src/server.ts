@@ -60,8 +60,8 @@ export function createServer(client: ProviderSource): McpServer {
       title: 'Search regulated-care providers',
       description: `Search verified U.S. regulated-care providers (currently the GLP-1 / weight-management vertical is live) by vertical, city, state and business mode.
 
-Free tier (no key): identity fields per provider — entity_id, slug, vertical, name, city, state, business_mode, latitude, longitude, npi — plus a notice describing paid fields.
-With XCIRCL_API_KEY: adds legitscript / license / fda compliance signals and cash price, each with source + verification timestamp.
+A free XCIRCL_API_KEY returns identity fields per provider — entity_id, slug, vertical, name, city, state, business_mode, latitude, longitude, npi — plus a notice describing plan-gated fields.
+Keys with compliance access add legitscript / license / fda signals and cash price, each with source + verification timestamp.
 
 Returns JSON: { tier, publish_boundary, notice?, pagination: { total, limit, offset, returned }, filters, data: Provider[] }.
 
@@ -112,7 +112,7 @@ Use get_provider for one record, check_compliance for compliance signals only.`,
       title: 'Get one provider record',
       description: `Fetch a single provider by entity_id (e.g. "ent_f47550b79f755d70b58b183a") or slug (e.g. "alegro-health-mckinney-tx").
 
-Free tier: identity fields + notice. With XCIRCL_API_KEY: full record including legitscript / license / fda signals and price, each source-linked and timestamped.
+A free XCIRCL_API_KEY returns identity fields + notice. Keys with compliance access return legitscript / license / fda signals and price, each source-linked and timestamped.
 
 Returns JSON: { tier, publish_boundary, notice?, data: Provider }. Errors with a clear message if the id is unknown.`,
       inputSchema: {
@@ -144,7 +144,7 @@ Returns JSON: { tier, publish_boundary, notice?, data: Provider }. Errors with a
       title: 'Check provider compliance signals',
       description: `Compliance signals for one provider: LegitScript certification, state-license record, FDA warning-letter screen — each with status, source and verification timestamp.
 
-These are PAID fields. Without XCIRCL_API_KEY the tool still answers (provider identity + compliance: null) and explains how to unlock: "${UPGRADE_HINT}".
+These are plan-gated fields. A free XCIRCL_API_KEY returns provider identity + compliance: null and explains how to unlock them: "${UPGRADE_HINT}".
 
 Signal statuses: verified (source+date held) | clear (negative screen run) | flagged (adverse finding) | reported (self-reported) | unverified | not_screened.
 
