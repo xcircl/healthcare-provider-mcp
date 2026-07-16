@@ -9,6 +9,18 @@ updates:
     groups:
       dev-dependencies:
         dependency-type: development
+    ignore:
+      # typescript-eslint@8.x only supports TypeScript <6.1.0.
+      # Keep major compiler upgrades out of the weekly dev-dependencies group
+      # until the lint toolchain explicitly supports them.
+      - dependency-name: typescript
+        update-types:
+          - version-update:semver-major
+      # The package supports Node >=18.17, so do not jump Node type majors
+      # beyond the runtimes covered by CI.
+      - dependency-name: "@types/node"
+        update-types:
+          - version-update:semver-major
 
   # Keep the GitHub Actions in CI up to date.
   - package-ecosystem: github-actions
