@@ -89,7 +89,7 @@ view of the wider monitored set).
   "tier": "free",                    // or "paid" — decided by your key
   "plan": "free",                    // free | builder | developer | enterprise
   "publish_boundary": "verified",    // or "tracked" (include=tracked, free tier only)
-  "usage": { "used": 7, "quota": 5000 },           // metered plans (builder/developer) only
+  "usage": { "used": 7, "quota": 100 },            // metered plans only; actual quotas vary by plan
   "notice": "Free tier: identity fields only. …",  // free tier only
   "pagination": { "total": 15, "limit": 20, "offset": 0, "returned": 15 },
   "filters": { "vertical": "glp1", "state": "TX", "city": null, "business_mode": null },
@@ -148,8 +148,10 @@ principle as field tiering — clients do no gating.
 
 ## Error responses (verbatim)
 
-The SDK and MCP server relay these server messages **verbatim** — the
-`error` and `upgrade` texts below are exactly what callers see.
+The SDK and MCP server relay server messages **verbatim**. The examples below
+show the response shape without hard-coding live prices or quota numbers in
+this repository; the website is the single source of truth for current plan
+terms.
 
 **403 — Builder key used outside its bound vertical** (e.g. a glp1-bound key
 querying `vertical=medspa`):
@@ -157,19 +159,18 @@ querying `vertical=medspa`):
 ```json
 {
   "error": "Your Builder plan is bound to the \"glp1\" vertical.",
-  "upgrade": "Developer ($750/mo) unlocks multi-vertical access — see /developers/pricing/ or talk to sales."
+  "upgrade": "Developer unlocks multi-vertical access — see /developers/pricing/ or talk to sales."
 }
 ```
 
-**429 — monthly quota reached** (Builder example; Developer's `upgrade` line
-points to Enterprise instead):
+**429 — monthly quota reached** (example shape):
 
 ```json
 {
-  "error": "Monthly call quota reached (5000 calls).",
+  "error": "Monthly call quota reached.",
   "plan": "builder",
-  "usage": { "used": 5000, "quota": 5000 },
-  "upgrade": "Developer ($750/mo) raises the quota to 25,000 calls — see /developers/pricing/."
+  "usage": { "used": 100, "quota": 100 },
+  "upgrade": "Developer raises the quota — see /developers/pricing/."
 }
 ```
 

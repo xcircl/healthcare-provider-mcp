@@ -125,8 +125,8 @@ for (const p of data) console.log(p.name, p.city, p.npi);
 if (notice) console.log(notice);              // what a key would add
 ```
 
-Runnable examples live in the repo (clone it to run them; both work without
-any key):
+Runnable examples live in the repo (clone it to run them; use a free xcircl
+key for provider data; the AI example also needs your own Claude API key):
 
 ```bash
 git clone https://github.com/xcircl/healthcare-provider-mcp.git
@@ -172,7 +172,7 @@ live [`/api/v1/sample/`](https://xcircl.com/api/v1/sample/) endpoint
 **Compliance fields (FDA, licenses, prices) and commercial use** → plans at
 [xcircl.com/developers/pricing](https://xcircl.com/developers/pricing/).
 
-- A **free key** returns 100% real identity data plus a one-line notice on what a paid key adds — the wall you hit is a field wall, and any missing/invalid key gets a clear 401 pointing to signup.
+- A **free key** returns real identity data plus a one-line notice on what a paid key adds — the wall you hit is a field wall, and any missing/invalid key gets a clear 401 pointing to signup.
 - Field tiering, rate limits and vertical binding are all enforced **server-side** by the key — this client contains zero gating logic.
 
 Full field dictionary: [docs/schema.md](./docs/schema.md) · recorded test

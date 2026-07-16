@@ -84,7 +84,7 @@ test('403 vertical binding → XcirclApiError with verbatim upgrade + body', asy
 });
 
 test('429 quota → verbatim; 4xx never retries', async () => {
-  const m = mockFetch(() => ({ status: 429, body: { error: 'Monthly call quota reached (5000 calls).', upgrade: 'Developer raises the quota to 25,000 calls.' } }));
+  const m = mockFetch(() => ({ status: 429, body: { error: 'Monthly call quota reached.', upgrade: 'Developer raises the quota.' } }));
   const client = new XcirclClient({ apiKey: 'k', fetch: m.fetch, maxRetries: 2 });
   await assert.rejects(() => client.searchProviders(), (err: unknown) => err instanceof XcirclApiError && err.status === 429);
   assert.equal(m.calls.length, 1);
@@ -137,5 +137,5 @@ test('checkCompliance without signals → compliance:null + notice', async () =>
   const client = new XcirclClient({ apiKey: 'k', fetch: m.fetch });
   const res = await client.checkCompliance('ent_x');
   assert.equal(res.compliance, null);
-  assert.match(res.notice ?? '', /require an API key/);
+  assert.match(res.notice ?? '', /require paid access/);
 });
