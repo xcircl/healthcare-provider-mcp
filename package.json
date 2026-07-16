@@ -11,7 +11,7 @@
   "scripts": {
     "build": "npm run build -w @xcircl/sdk && npm run build -w @xcircl/mcp-server",
     "clean": "rm -rf packages/*/dist",
-    "typecheck": "npm run typecheck -w @xcircl/sdk && npm run typecheck -w @xcircl/mcp-server",
+    "typecheck": "npm run build -w @xcircl/sdk && npm run typecheck -w @xcircl/sdk && npm run typecheck -w @xcircl/mcp-server",
     "lint": "eslint .",
     "pretest": "npm run build",
     "test": "node --import tsx --test packages/sdk-ts/test/*.test.ts packages/mcp-server/test/*.test.ts",
