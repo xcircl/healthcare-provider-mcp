@@ -14,7 +14,9 @@ Set `XCIRCL_API_KEY` to a **free key** (email signup, 30s →
 [signup](https://xcircl.com/developers/signup)) for identity fields, or a paid
 key to unlock compliance signals and cash prices
 ([plans](https://xcircl.com/developers/pricing/)) — field tiering is enforced
-server-side; this server holds no data and no gating logic.
+server-side; this server holds no data and no gating logic. Provider tools
+require a valid key; missing or invalid keys return 401. Free keys include 500
+provider calls/month.
 
 ## Tools
 

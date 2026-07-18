@@ -2,8 +2,9 @@
 
 The xcircl API returns one outward-facing shape — the `Provider` record — for
 every vertical. Field tiering is enforced **server-side by your API key**: the
-free tier simply doesn't include paid fields in the response. Nothing is
-hidden client-side.
+free tier simply doesn't include paid fields in the response. Provider
+endpoints require a valid key; `coverage` and `sample` are the public proof
+endpoints. Nothing is hidden client-side.
 
 This document is the field dictionary. The TypeScript source of truth is
 [`packages/sdk-ts/src/types.ts`](../packages/sdk-ts/src/types.ts).
@@ -134,14 +135,16 @@ Authorization: Bearer <your-key>
 
 | Tier | Fields | Notes |
 |---|---|---|
-| Free key | FREE fields | Email signup, instant — [signup](https://xcircl.com/developers/signup). Metered; responses carry a `notice` about paid fields |
+| Free key | FREE fields | Email signup, instant — [signup](https://xcircl.com/developers/signup). 500 provider calls/month; responses carry a `notice` about paid fields |
 | Paid key | ALL fields | Monthly call quota and vertical binding vary by plan — the response echoes `plan` and, on metered plans, a `usage` meter |
 
-A missing or unrecognised key returns `401` with a notice pointing to signup —
-a free key is 30 seconds away. Plans, quotas and pricing are maintained in one
+A missing or unrecognised key on provider endpoints returns `401` with a notice
+pointing to signup — a free key is 30 seconds away. Coverage and sample
+endpoints remain public. Paid plan quotas and pricing are maintained in one
 place, on the website:
 **[xcircl.com/developers/pricing](https://xcircl.com/developers/pricing/)**.
-This repo deliberately carries no price or quota numbers — they would rot here.
+This repo deliberately carries no paid plan price or quota numbers — they would
+rot here.
 
 Rate limits and vertical binding are enforced server-side by the key, same
 principle as field tiering — clients do no gating.

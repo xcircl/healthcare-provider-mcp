@@ -13,7 +13,8 @@ timestamped. GLP-1 is the deepest vertical today, with more in the pipeline.
 A **free key** (email signup, 30s →
 [signup](https://xcircl.com/developers/signup)) returns identity fields (name,
 location, NPI) from public registries, plus a notice describing what a paid
-key adds. A paid key unlocks LegitScript / state-license / FDA compliance
+key adds. Provider endpoints require `XCIRCL_API_KEY`; missing or invalid keys
+return 401. Free keys include 500 provider calls/month. A paid key unlocks LegitScript / state-license / FDA compliance
 signals and published cash prices, each with source + verification timestamp —
 see [plans](https://xcircl.com/developers/pricing/).
 Field tiering, quotas and vertical binding are all enforced **server-side** —

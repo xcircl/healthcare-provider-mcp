@@ -60,7 +60,7 @@ curl -sL -H "Authorization: Bearer $XCIRCL_API_KEY" \
 ```
 
 Real data, real API. A free key returns identity fields — enough to evaluate.
-Compliance fields (FDA, licenses, prices) and commercial use →
+Free keys include **500 provider calls per month**. Compliance fields (FDA, licenses, prices) and commercial use →
 [plans](https://xcircl.com/developers/pricing/).
 
 ## Use it from Claude (MCP server)
@@ -68,7 +68,7 @@ Compliance fields (FDA, licenses, prices) and commercial use →
 No clone, no build — `npx` pulls
 [`@xcircl/mcp-server`](https://www.npmjs.com/package/@xcircl/mcp-server) from npm.
 
-Get a free key (email signup, 30s) →
+`XCIRCL_API_KEY` is required for provider tools. Get a free key (email signup, 30s) →
 [xcircl.com/developers/signup](https://xcircl.com/developers/signup). A paid
 key additionally unlocks price + compliance fields.
 
@@ -168,11 +168,11 @@ live [`/api/v1/sample/`](https://xcircl.com/api/v1/sample/) endpoint
 | `price` — published cash price | — | ✅ |
 | source + `verified_at` on every signal | — | ✅ |
 
-**Free key (email signup, 30s)** — identity fields, great for evaluation.
+**Free key (email signup, 30s)** — 500 provider calls/month and identity fields, great for evaluation.
 **Compliance fields (FDA, licenses, prices) and commercial use** → plans at
 [xcircl.com/developers/pricing](https://xcircl.com/developers/pricing/).
 
-- A **free key** returns real identity data plus a one-line notice on what a paid key adds — the wall you hit is a field wall, and any missing/invalid key gets a clear 401 pointing to signup.
+- A **free key** returns real identity data plus a one-line notice on what a paid key adds — the wall you hit is a field/quota wall, and any missing/invalid key gets a clear 401 pointing to signup.
 - Field tiering, rate limits and vertical binding are all enforced **server-side** by the key — this client contains zero gating logic.
 
 Full field dictionary: [docs/schema.md](./docs/schema.md) · recorded test
