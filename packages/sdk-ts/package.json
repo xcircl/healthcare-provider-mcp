@@ -1,7 +1,7 @@
 {
   "name": "@xcircl/sdk",
-  "version": "0.1.0",
-  "description": "US regulated-care provider data API client — cross-checked against NPPES, FDA, and where available LegitScript & state boards, for AI agents, clinic finders, and diligence teams. Free API keys return identity fields; eligible plans unlock compliance signals and cash prices.",
+  "version": "0.1.1",
+  "description": "US regulated-care provider data API client for xcircl. Provider endpoints require an API key; free keys return identity fields and eligible plans unlock compliance signals and cash prices.",
   "license": "MIT",
   "author": "xcircl <dev@xcircl.com> (https://xcircl.com)",
   "homepage": "https://github.com/xcircl/healthcare-provider-mcp#readme",

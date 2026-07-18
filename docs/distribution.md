@@ -7,7 +7,7 @@ repo runs itself.
 
 Canonical names: GitHub repo **`xcircl/healthcare-provider-mcp`** (renamed
 from `xcircl-agent`; old URL 301s). npm packages **`@xcircl/mcp-server`** and
-**`@xcircl/sdk`** (unchanged — 0.1.0 already published).
+**`@xcircl/sdk`** (unchanged package names; 0.1.1 carries the current required-key policy).
 
 ## GitHub topics
 
@@ -38,8 +38,8 @@ One-liner (shared across listings):
 
 > **US healthcare provider facts as MCP tools** — search verified GLP-1 /
 > regulated-care providers with source-linked, timestamped compliance signals
-> (LegitScript, state license, FDA) and cash prices. A free API key takes about
-> 30 seconds to create.
+> (LegitScript, state license, FDA) and cash prices. Provider tools require an
+> API key; a free key takes about 30 seconds to create.
 
 Tools to list: `search_providers`, `get_provider`, `check_compliance`.
 Install: `npx -y @xcircl/mcp-server`. License: MIT. Repo:
@@ -92,7 +92,8 @@ section, alphabetical). Suggested line:
 - [xcircl](https://github.com/xcircl/healthcare-provider-mcp) — US healthcare
   provider facts: verified GLP-1 / regulated-care providers with source-linked
   compliance signals (LegitScript, state license, FDA) and cash prices. Free
-  tier; a free API key is required.
+  tier; an API key is required for provider tools, and free keys cover
+  identity-field evaluation.
 ```
 
 PR title: `Add xcircl healthcare-provider MCP server`. Follow their
@@ -107,4 +108,4 @@ factual; the wording above is already trimmed to their house style).
 - [ ] PulseMCP submitted
 - [ ] mcp.so submitted
 - [ ] modelcontextprotocol/servers PR opened
-- [ ] Next npm publish carries the updated keywords + repo URL
+- [ ] Next npm publish carries the updated keywords + repo URL + required-key README
