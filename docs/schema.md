@@ -34,7 +34,7 @@ tier and up.
 
 Each signal carries **status + source + verification timestamp** — that
 triple is the product. Requires a paid key — see
-[plans](https://xcircl.com/developers/pricing/).
+[plans](https://xcircl.com/pricing/).
 
 | Field | Type | Description |
 |---|---|---|
@@ -142,7 +142,7 @@ A missing or unrecognised key on provider endpoints returns `401` with a notice
 pointing to signup — a free key is 30 seconds away. Coverage and sample
 endpoints remain public. Paid plan quotas and pricing are maintained in one
 place, on the website:
-**[xcircl.com/developers/pricing](https://xcircl.com/developers/pricing/)**.
+**[xcircl.com/pricing](https://xcircl.com/pricing/)**.
 This repo deliberately carries no paid plan price or quota numbers — they would
 rot here.
 
@@ -162,7 +162,7 @@ querying `vertical=medspa`):
 ```json
 {
   "error": "Your Builder plan is bound to the \"glp1\" vertical.",
-  "upgrade": "Developer unlocks multi-vertical access — see /developers/pricing/ or talk to sales."
+  "upgrade": "Developer unlocks multi-vertical access — see /pricing/ or talk to sales."
 }
 ```
 
@@ -173,7 +173,7 @@ querying `vertical=medspa`):
   "error": "Monthly call quota reached.",
   "plan": "builder",
   "usage": { "used": 100, "quota": 100 },
-  "upgrade": "Developer raises the quota — see /developers/pricing/."
+  "upgrade": "Developer raises the quota — see /pricing/."
 }
 ```
 

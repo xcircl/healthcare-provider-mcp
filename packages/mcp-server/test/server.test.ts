@@ -121,7 +121,7 @@ test('403 relays the server upgrade text verbatim', async () => {
     fakeSource({
       searchProviders: async () => {
         throw new XcirclApiError('Your Builder plan is bound to the "glp1" vertical.', 403, 'https://api/x', {
-          upgrade: 'Developer unlocks multi-vertical access — see /developers/pricing/.',
+          upgrade: 'Developer unlocks multi-vertical access — see /pricing/.',
         });
       },
     }),

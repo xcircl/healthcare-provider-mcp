@@ -61,7 +61,7 @@ curl -sL -H "Authorization: Bearer $XCIRCL_API_KEY" \
 
 Real data, real API. A free key returns identity fields — enough to evaluate.
 Free keys include **500 provider calls per month**. Compliance fields (FDA, licenses, prices) and commercial use →
-[plans](https://xcircl.com/developers/pricing/).
+[plans](https://xcircl.com/pricing/).
 
 ## Use it from Claude (MCP server)
 
@@ -125,14 +125,15 @@ for (const p of data) console.log(p.name, p.city, p.npi);
 if (notice) console.log(notice);              // what a key would add
 ```
 
-Runnable examples live in the repo (clone it to run them; use a free xcircl
-key for provider data; the AI example also needs your own Claude API key):
+Runnable examples live in the repo (clone it to run them). Provider examples
+require `XCIRCL_API_KEY`; the public `coverage` and `sample` endpoints are the
+only no-key API calls:
 
 ```bash
 git clone https://github.com/xcircl/healthcare-provider-mcp.git
 cd healthcare-provider-mcp && npm install && npm run build
-node examples/01-find-clinics.mjs Houston TX  # find clinics
-node examples/02-ai-tool-use.mjs              # give Claude live xcircl tools (bring your own ANTHROPIC_API_KEY)
+XCIRCL_API_KEY=xc_free_... node examples/01-find-clinics.mjs Houston TX
+ANTHROPIC_API_KEY=sk-ant-... XCIRCL_API_KEY=xc_free_... node examples/02-ai-tool-use.mjs
 ```
 
 ## Where the data comes from
@@ -170,7 +171,7 @@ live [`/api/v1/sample/`](https://xcircl.com/api/v1/sample/) endpoint
 
 **Free key (email signup, 30s)** — 500 provider calls/month and identity fields, great for evaluation.
 **Compliance fields (FDA, licenses, prices) and commercial use** → plans at
-[xcircl.com/developers/pricing](https://xcircl.com/developers/pricing/).
+[xcircl.com/pricing](https://xcircl.com/pricing/).
 
 - A **free key** returns real identity data plus a one-line notice on what a paid key adds — the wall you hit is a field/quota wall, and any missing/invalid key gets a clear 401 pointing to signup.
 - Field tiering, rate limits and vertical binding are all enforced **server-side** by the key — this client contains zero gating logic.

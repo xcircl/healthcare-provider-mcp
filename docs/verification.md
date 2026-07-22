@@ -4,10 +4,18 @@ Recorded test runs against the production API (`https://xcircl.com/api/v1`).
 Keys are supplied via environment variables only — none are stored in this
 repository.
 
-## 2026-07-03 — free tier & paid passthrough (v0.1.0)
+## 2026-07-22 — canonical packaging refresh (v0.1.2)
 
-- No-key quickstart: fresh install + build + `examples/01-find-clinics.mjs`
-  completed in ~3s, returning real identity fields plus the free-tier notice.
+- Provider endpoints continue to require a valid free or paid xcircl API key.
+- Public proof endpoints (`/coverage/` and `/sample/`) remain no-key.
+- GitHub and npm documentation now use the canonical `/pricing/` page and no
+  longer link to the retired `/developers/pricing/` route.
+- Package, MCP server, and workspace versions are aligned at `0.1.2`.
+
+## 2026-07-03 — free tier & paid passthrough (v0.1.0, historical)
+
+- Historical no-key quickstart: this behavior has been retired. Current
+  provider calls require a free or paid key; coverage/sample remain public.
 - MCP stdio protocol: `initialize` handshake (protocol `2025-06-18`),
   `tools/list` (3 tools), `tools/call` on all three tools, and 404 handling
   all passed.
@@ -52,14 +60,14 @@ SDK (`XcirclApiError`):
 ```
 status: 403
 message (verbatim): Your Builder plan is bound to the "glp1" vertical.
-upgrade (verbatim): Developer unlocks multi-vertical access — see /developers/pricing/ or talk to sales.
+upgrade (verbatim): Developer unlocks multi-vertical access — see /pricing/ or talk to sales.
 ```
 
 MCP:
 
 ```
 isError: true
-text: Error (403): Your Builder plan is bound to the "glp1" vertical. Developer unlocks multi-vertical access — see /developers/pricing/ or talk to sales.
+text: Error (403): Your Builder plan is bound to the "glp1" vertical. Developer unlocks multi-vertical access — see /pricing/ or talk to sales.
 ```
 
 ### 3. Quota 429 (replayed shape)
@@ -72,15 +80,15 @@ SDK (`XcirclApiError`):
 ```
 status: 429
 message (verbatim): Monthly call quota reached.
-upgrade (verbatim): Developer raises the quota — see /developers/pricing/.
-raw body: {"error":"Monthly call quota reached.","plan":"builder","usage":{"used":100,"quota":100},"upgrade":"Developer raises the quota — see /developers/pricing/."}
+upgrade (verbatim): Developer raises the quota — see /pricing/.
+raw body: {"error":"Monthly call quota reached.","plan":"builder","usage":{"used":100,"quota":100},"upgrade":"Developer raises the quota — see /pricing/."}
 ```
 
 MCP:
 
 ```
 isError: true
-text: Error (429): Monthly call quota reached. Developer raises the quota — see /developers/pricing/.
+text: Error (429): Monthly call quota reached. Developer raises the quota — see /pricing/.
 ```
 
 In all cases the client relays the server's `error` + `upgrade` text

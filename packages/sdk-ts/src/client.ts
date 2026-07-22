@@ -26,7 +26,7 @@ export const DEFAULT_BASE_URL = 'https://xcircl.com/api/v1';
 /** The one-line paid-field hint shown whenever a response is free-tier.
  *  Deliberately carries no price: pricing lives on the website, single-sourced. */
 export const UPGRADE_HINT =
-  'Full fields (cash_price, compliance) require paid access → https://xcircl.com/developers/pricing/';
+  'Full fields (cash_price, compliance) require paid access → https://xcircl.com/pricing/';
 
 export interface XcirclClientOptions {
   /** xcircl API key. Free keys are available at xcircl.com/developers/signup. */

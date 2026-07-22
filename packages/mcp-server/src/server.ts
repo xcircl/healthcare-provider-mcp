@@ -51,7 +51,7 @@ function toolError(err: unknown) {
 export function createServer(client: ProviderSource): McpServer {
   const server = new McpServer({
     name: 'xcircl-mcp-server',
-    version: '0.1.0',
+    version: '0.1.2',
   });
 
   server.registerTool(
