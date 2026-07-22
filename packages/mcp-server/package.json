@@ -1,6 +1,6 @@
 {
   "name": "@xcircl/mcp-server",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "MCP server for xcircl provider facts as tools for Claude/ChatGPT and other AI agents. Provider tools require XCIRCL_API_KEY; free keys return identity fields.",
   "license": "MIT",
   "author": "xcircl <dev@xcircl.com> (https://xcircl.com)",
@@ -56,7 +56,7 @@
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0",
-    "@xcircl/sdk": "^0.1.1",
+    "@xcircl/sdk": "^0.1.2",
     "zod": "^4.4.3"
   },
   "devDependencies": {

@@ -7,7 +7,7 @@ repo runs itself.
 
 Canonical names: GitHub repo **`xcircl/healthcare-provider-mcp`** (renamed
 from `xcircl-agent`; old URL 301s). npm packages **`@xcircl/mcp-server`** and
-**`@xcircl/sdk`** (unchanged package names; 0.1.1 carries the current required-key policy).
+**`@xcircl/sdk`** (unchanged package names; 0.1.2 carries the current required-key policy and canonical pricing links).
 
 ## GitHub topics
 
@@ -22,8 +22,8 @@ compliance  nppes  fda  ai-agents  typescript
 
 ## npm keywords
 
-Already written into the two `package.json` files (take effect on the next
-publish — 0.1.0 is not being re-churned):
+Already written into the two `package.json` files and included in the 0.1.2
+release:
 
 - **@xcircl/sdk**: xcircl, healthcare, healthcare-api, glp1, provider-data,
   provider-directory, regulated-care, compliance, nppes, fda, clinic-finder,

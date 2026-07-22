@@ -65,7 +65,7 @@ test('missing key fails before any request', () => {
 test('403 vertical binding → XcirclApiError with verbatim upgrade + body', async () => {
   const errBody = {
     error: 'Your Builder plan is bound to the "glp1" vertical.',
-    upgrade: 'Developer unlocks multi-vertical access — see /developers/pricing/ or talk to sales.',
+    upgrade: 'Developer unlocks multi-vertical access — see /pricing/ or talk to sales.',
   };
   const m = mockFetch(() => ({ status: 403, body: errBody }));
   const client = new XcirclClient({ apiKey: 'k', fetch: m.fetch });
