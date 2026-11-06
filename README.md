@@ -5,10 +5,6 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE)
 [![npm @xcircl/sdk](https://img.shields.io/npm/v/@xcircl/sdk?label=%40xcircl%2Fsdk&color=cb3837&logo=npm)](https://www.npmjs.com/package/@xcircl/sdk)
 [![npm @xcircl/mcp-server](https://img.shields.io/npm/v/@xcircl/mcp-server?label=%40xcircl%2Fmcp-server&color=cb3837&logo=npm)](https://www.npmjs.com/package/@xcircl/mcp-server)
-[![Verified providers](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fxcircl.com%2Fapi%2Fv1%2Fcoverage%2F&query=%24.verified.total&label=verified%20providers&color=blue)](https://xcircl.com/data/coverage/)
-[![Tracked providers](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fxcircl.com%2Fapi%2Fv1%2Fcoverage%2F&query=%24.tracked.total&label=tracked&color=lightgrey)](https://xcircl.com/data/coverage/)
-[![States covered](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fxcircl.com%2Fapi%2Fv1%2Fcoverage%2F&query=%24.verified.states&label=states&color=blue)](https://xcircl.com/data/coverage/)
-[![Verticals live](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fxcircl.com%2Fapi%2Fv1%2Fcoverage%2F&query=%24.verticals_live&label=verticals%20live&color=orange)](https://xcircl.com/data/coverage/)
 
 **Verify any US healthcare provider** — query them in natural language or
 function calls, cross-checked against official sources: NPPES, the FDA, and
@@ -17,8 +13,7 @@ server** for Claude/ChatGPT or a **TypeScript SDK** for your own product; a
 **free key** takes 30 seconds (email signup), and it's built for AI agents,
 clinic finders, and diligence teams.
 
-GLP-1 / weight-management is the deepest vertical today (6,028 tracked ·
-869 verified). A US-wide provider identity layer (~9M providers across all
+GLP-1 / weight-management is the deepest vertical today. A US-wide provider identity layer (~9M providers across all
 specialties) is rolling out; medspa and pet veterinary follow. Verified
 compliance signals and cash prices unlock with a key.
 
@@ -40,19 +35,19 @@ curl -sL -H "Authorization: Bearer $XCIRCL_API_KEY" \
 ```jsonc
 {
   "tier": "free",
-  "pagination": { "total": 15, "limit": 3, "offset": 0, "returned": 3 },
+  "pagination": { "total": 1, "limit": 3, "offset": 0, "returned": 1 },
   "data": [
     {
-      "entity_id": "ent_f47550b79f755d70b58b183a",
-      "slug": "alegro-health-mckinney-tx",
+      "entity_id": "ent_000000000000000000000000",
+      "slug": "example-clinic-fictional-anytown-tx",
       "vertical": "glp1",
-      "name": "Alegro Health",
-      "city": "McKinney",
+      "name": "Example Clinic (fictional)",
+      "city": "Anytown",
       "state": "TX",
       "business_mode": "online",
-      "latitude": 33.198119,
-      "longitude": -96.708802,
-      "npi": "1053066357"
+      "latitude": 0.0,
+      "longitude": 0.0,
+      "npi": "0000000000"
     }
     // …
   ]
